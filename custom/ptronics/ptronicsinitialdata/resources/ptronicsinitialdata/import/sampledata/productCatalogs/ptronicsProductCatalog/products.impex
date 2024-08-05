@@ -1,0 +1,97 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products into PTronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog = ptronicsProductCatalog
+$productCatalogName = PTronics Product Catalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$supercategories = supercategories(code, $catalogVersion)
+$baseProduct = baseProduct(code, $catalogVersion)
+$approved = approvalstatus(code)[default = 'check']
+
+# Language
+$lang = en
+
+# Insert Products
+INSERT_UPDATE Product; code[unique = true]; $supercategories          ; manufacturerName; manufacturerAID; ean; variantType(code); unit(code)[default = pieces]; $catalogVersion
+                     ; 200001             ; businessLaptop, apple     ; Apple           ; APP            ;    ;                  ;                             ;
+                     ; 200002             ; businessLaptop, apple     ; Apple           ; APP            ;    ;                  ;                             ;
+                     ; 200003             ; businessLaptop, samsung   ; Samsung         ; SAM            ;    ;                  ;                             ;
+                     ; 200004             ; businessLaptop, samsung   ; Samsung         ; SAM            ;    ;                  ;                             ;
+                     ; 200005             ; businessLaptop, hp        ; HP              ; HP             ;    ;                  ;                             ;
+                     ; 200006             ; businessLaptop, hp        ; HP              ; HP             ;    ;                  ;                             ;
+                     ; 200007             ; gamingLaptop, dell        ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200008             ; businessLaptop, dell      ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200009             ; gamingLaptop, asus        ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200010             ; gamingLaptop, asus        ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200011             ; gamingLaptop, lenovo      ; Lenovo          ; LEN            ;    ;                  ;                             ;
+                     ; 200012             ; businessLaptop, lenovo    ; Lenovo          ; LEN            ;    ;                  ;                             ;
+                     ; 200013             ; gamingLaptop, acer        ; Acer            ; ACE            ;    ;                  ;                             ;
+                     ; 200014             ; gamingLaptop, acer        ; Acer            ; ACE            ;    ;                  ;                             ;
+                     ; 200015             ; businessDesktop, dell     ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200016             ; businessDesktop, dell     ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200017             ; gamingDesktop, asus       ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200018             ; gamingDesktop, asus       ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200019             ; businessDesktop, lenovo   ; Lonovo          ; LEN            ;    ;                  ;                             ;
+                     ; 200020             ; gamingDesktop, hp         ; HP              ; HP             ;    ;                  ;                             ;
+                     ; 200021             ; businessDesktop, hp       ; HP              ; HP             ;    ;                  ;                             ;
+                     ; 200022             ; wiredMouse, razer         ; Razer           ; RAZ            ;    ;                  ;                             ;
+                     ; 200023             ; wirelessMouse, protronics ; Protronics      ; PRO            ;    ;                  ;                             ;
+                     ; 200024             ; wirelessKeyboard, dell    ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200025             ; wirelessKeyboard, apple   ; Apple           ; APP            ;    ;                  ;                             ;
+                     ; 200026             ; wiredKeyboard, asus       ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200027             ; adapter, protronics       ; Protronics      ; PRO            ;    ;                  ;                             ;
+                     ; 200028             ; adapter, dell             ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200029             ; headphone, sony           ; Sony            ; SONY           ;    ;                  ;                             ;
+                     ; 200030             ; headphone, jbl            ; JBL             ; JBL            ;    ;                  ;                             ;
+                     ; 200031             ; charger, apple            ; Apple           ; APP            ;    ;                  ;                             ;
+                     ; 200032             ; charger, hp               ; HP              ; HP             ;    ;                  ;                             ;
+                     ; 200033             ; charger, asus             ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200034             ; charger, ambrane          ; Ambrane         ; AMB            ;    ;                  ;                             ;
+                     ; 200035             ; display, samsung          ; Samsung         ; SAM            ;    ;                  ;                             ;
+                     ; 200036             ; display, apple            ; Apple           ; APP            ;    ;                  ;                             ;
+                     ; 200037             ; display, dell             ; Dell            ; DELL           ;    ;                  ;                             ;
+                     ; 200038             ; webcam, asus              ; Asus            ; ASUS           ;    ;                  ;                             ;
+                     ; 200039             ; webcam, lenovo            ; Lenovo          ; LEN            ;    ;                  ;                             ;
+                     ; 200040             ; webcam, hp                ; HP              ; HP             ;    ;                  ;                             ;
+
+
+INSERT_UPDATE Entitlement; id[unique = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+extensionName = ""entitlementservices"";
+    if(!extensionNames.contains(extensionName))
+    {
+        LOG.info(""Sample data for entitlementservices was skipped because the extension entitlementservices is not included in the setup"");
+        line.clear();
+    }
+"
+                         ; care_pack
+                         ; extra_battery_pack
+
+INSERT_UPDATE ProductEntitlement; id[unique = true]          ; entitlement(id)    ; subscriptionProduct(code, $catalogVersion); quantity; timeUnit(code); timeUnitStart; timeUnitDuration; $catalogVersion
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+extensionName = ""entitlementservices"";
+    if(!extensionNames.contains(extensionName))
+    {
+        LOG.info(""Sample data for entitlementservices was skipped because the extension entitlementservices is not included in the setup"");
+        line.clear();
+    }
+"
+                                ; care_pack_4567162          ; care_pack          ; 4567162                                   ;         ; month         ; 1            ; 24              ;
+                                ; extra_battery_pack_3791317 ; extra_battery_pack ; 3791317                                   ; 1       ;               ;              ;                 ;

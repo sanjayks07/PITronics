@@ -1,0 +1,15 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for importing products Future Stock into PTronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=ptronicsProductCatalog
+$productCatalogName=PTronics Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+
+INSERT_UPDATE FutureStock;productCode[unique=true];quantity;date[unique=true,dateformat=yyyy-MM-dd]
+;200001;50;2024-05-10
+;200009;85;2024-06-15
+

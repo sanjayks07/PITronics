@@ -1,0 +1,237 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+#
+# Import Two Sample B2B Organizations
+#
+
+INSERT_UPDATE UserGroup; uid[unique = true]  ; groups(uid); locname[lang = en]
+                       ; SuperAccountMangers ;            ;
+
+INSERT_UPDATE Employee; uid[unique = true]; name              ; groups(uid)[mode = append]                                ; password[default = 'nimda']
+                      ; acctmgra          ; Alistair Thompson ; employeegroup,acctmgrgroup,SuperAccountMangers,admingroup ;
+                      ; acctmgrb          ; Elke Vogel        ; employeegroup,acctmgrgroup,admingroup                     ;
+                      ; acctmgrc          ; Sergio Vega       ; employeegroup,acctmgrgroup,admingroup                     ;
+                      ; acctmgrd          ; Bruce Rivers      ; employeegroup,acctmgrgroup,admingroup                     ;
+
+
+###############################
+#  PIT Solutions ORGANIZATION (PITS)
+
+INSERT_UPDATE B2BCreditLimit; code[unique = true] ; alertRateType(code, itemtype(code)); alertThreshold; amount ; currency(isocode); dateRange(code, itemtype(code)); datePeriod[dateformat = dd.MM.yyyy hh:mm:ss]
+                            ; Monthly300KAlert10K ; CURRENCY:B2BRateType               ; 10000         ; 300000 ; INR              ; MONTH:B2BPeriodRange           ;
+
+INSERT_UPDATE B2BUnit; description; uid[unique = true]; name     ; locName[lang = en]; groups(uid); reportingOrganization(uid); Addresses(&addId); &B2BUnitID; accountManager(uid); accountManagerGroups(uid); creditLimit(code)   ; approvalProcessCode
+                     ; PITS       ; PITS              ; PITS     ; PITS              ;            ; PITS                      ; PITSAddrID1      ; PITSID1   ; acctmgrd           ; SuperAccountMangers      ; Monthly300KAlert10K ; accApproval
+                     ; Unit A     ; PITS_SAP          ; PITS SAP ; PITS SAP          ; PITS       ; PITS                      ; PITSAddrID2      ; PITSID2   ; acctmgra           ;                          ;                     ;
+
+INSERT_UPDATE Address; streetname[unique = true]; postalcode[unique = true]; town       ; country(isocode); billingAddress; contactAddress; shippingAddress; unloadingAddress; firstname; lastname; email              ; title(code); &addId      ; owner(&B2BUnitID)[unique = true]
+                     ; Thejaswini, Technopark   ; 687004                   ; Trivandrum ; IN              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; Test     ; T       ; sanjay.ks@pits.com ; mr         ; PITSAddrID1 ; PITSID1
+                     ; Chandragiri, Technopark  ; 687004                   ; Trivandrum ; IN              ; TRUE          ; TRUE          ; TRUE           ; TRUE            ; Test     ; T       ; sanjay.ks@pits.com ; mr         ; PITSAddrID2 ; PITSID2
+
+INSERT_UPDATE B2BUserGroup; uid[unique = true]  ; name                 ; unit(uid); permissions(code, unit(uid))
+                          ; enhancedPermissions ; Enhanced Permissions ; PITS     ; PITS_250K_INR_ORDER:PITS,PITS_500K_INR_MONTH:PITS
+                          ; commonPermissions   ; Common Permissions   ; PITS     ; PITS_70K_INR_ORDER:PITS,PITS_200K_INR_MONTH:PITS
+
+INSERT_UPDATE B2BCustomer; description; uid[unique = true] ; customerID                           ; email              ; name      ; title(code); groups(uid)                                     ; permissionGroups(uid); sessionCurrency(isocode)[default = 'INR']; password[default = 'nimda']
+                         ; Admin A    ; sanjay.ks@pits.com ; ceff469f-25aa-4a10-99e3-da31245204e7 ; sanjay.ks@pits.com ; Sanjay KS ; mr         ; PITS, b2badmingroup                             ;                      ;                                          ;
+                         ; Approver A ; anoof.m@pits.com   ; db1f981a-97ca-49c4-9cb3-9f4dfb0a3e0a ; anoof.m@pits.com   ; Anoof M   ; mr         ; PITS, b2bapprovergroup                          ;                      ;                                          ;
+                         ; Approver B ; shibu.p@pits.com   ; 728c59e5-cccd-4713-811b-2031f03d885c ; shibu.p@pits.com   ; Shibu P   ; mr         ; PITS, b2bapprovergroup                          ;                      ;                                          ;
+                         ; Customer A ; vimal.s@pits.com   ; 48d0ed8e-0a9c-46e9-8a04-b2327837dd1c ; vimal.s@pits.com   ; Vimal S   ; mr         ; PITS, b2bcustomergroup,enhancedPermissions      ;                      ;                                          ;
+                         ; Customer B ; athira.ih@pits.com ; 3e34392f-0338-4a3f-a787-37eb2c3724d6 ; athira.ih@pits.com ; Athira IH ; ms         ; PITS_SAP, b2bcustomergroup, commonPermissions   ;                      ;                                          ;
+                         ; Customer C ; subin.p@pits.com   ; 49f749e1-53cb-44e8-98ce-4d60e41d9e00 ; subin.p@pits.com   ; Subin P   ; mr         ; PITS_SAP, b2bcustomergroup, enhancedPermissions ;                      ;                                          ;
+                         ; Customer D ; aneesha.t@pits.com ; 5a497879-c455-44a2-83dd-837ff2a6b749 ; aneesha.t@pits.com ; Aneesha T ; ms         ; PITS, b2bcustomergroup, commonPermissions       ;                      ;                                          ;
+                         ; Manager A  ; alen.t@pits.com    ; 9c7fc26d-3da6-4e22-b9d7-5be929088d83 ; alen.t@pits.com    ; Alen T    ; mr         ; PITS, b2bmanagergroup                           ;                      ;                                          ;
+                         ; Manager B  ; amal.j@pits.com    ; b62919c5-9c62-49d6-b6fe-6630e3e96a16 ; amal.j@pits.com    ; Amal J    ; mr         ; PITS, b2bmanagergroup                           ;                      ;                                          ;
+
+INSERT_UPDATE B2BBudget; code[unique = true]; Unit(uid); budget ; currency(isocode)[allownull = true]; dateRange[dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; name[lang = en]
+                       ; 350K_INR_MONTH     ; PITS     ; 350000 ; INR                                ; 01.04.2010 00:00:00,12.31.2034 12:59:59                      ; 350K INR/MONTH
+                       ; 250K_INR_MONTH     ; PITS     ; 250000 ; INR                                ; 01.04.2010 00:00:00,12.31.2034 12:59:59                      ; 250K INR/MONTH
+                       ; 400K_INR_MONTH     ; PITS_SAP ; 400000 ; INR                                ; 01.04.2010 00:00:00,12.31.2034 12:59:59                      ; 400K INR/MONTH
+                       ; 200K_INR_MONTH     ; PITS_SAP ; 200000 ; INR                                ; 01.04.2010 00:00:00,12.31.2034 12:59:59                      ; 350K INR/MONTH
+
+INSERT_UPDATE B2BCostCenter; code[unique = true]; Unit(uid); currency(isocode); budgets(code)  ; name[lang = en]
+                           ; PITS               ; PITS     ; INR              ; 350K_INR_MONTH ; PITS
+                           ; PITS_SAP           ; PITS_SAP ; INR              ; 400K_INR_MONTH ; PITS SAP
+
+INSERT_UPDATE B2BOrderThresholdPermission; code[unique = true] ; Unit(uid); threshold; currency(isocode)
+                                         ; PITS_50K_INR_ORDER  ; PITS     ; 50000    ; INR
+                                         ; PITS_70K_INR_ORDER  ; PITS     ; 70000    ; INR
+                                         ; PITS_100K_INR_ORDER ; PITS     ; 100000   ; INR
+                                         ; PITS_250K_INR_ORDER ; PITS     ; 250000   ; INR
+
+INSERT_UPDATE B2BOrderThresholdTimespanPermission; code[unique = true]               ; Unit(uid); threshold ; currency(isocode); range(code, itemtype(code))
+                                                 ; PITS_200K_INR_MONTH               ; PITS     ; 200000    ; INR              ; MONTH:B2BPeriodRange
+                                                 ; PITS_500K_INR_MONTH               ; PITS     ; 500000    ; INR              ; MONTH:B2BPeriodRange
+                                                 ; PITS_Unlimited_Threshold_Timespan ; PITS     ; 999999999 ; INR              ; MONTH:B2BPeriodRange
+
+UPDATE B2BUnit; uid[unique = true]; approvers(uid)   ; userPriceGroup(code, itemtype(code))
+              ; PITS              ; anoof.m@pits.com ; PITS_PRICES:UserPriceGroup
+              ; PITS_SAP          ; shibu.p@pits.com ; PITS_SAP_PRICES:UserPriceGroup
+
+#Standalone
+INSERT_UPDATE B2BCustomer; description                    ; uid[unique = true]                             ; customerID                           ; originalUid                ; email                      ; name         ; title(code); groups(uid)                                                          ; permissionGroups(uid); sessionCurrency(isocode)[default = 'INR']; site(uid)           ; loginDisabled[default = true]
+                         ; PTronics Standalone Customer 1 ; telly.becker@rustic-hw.com|ptronics-standalone ; 40bb80e4-9d88-4553-a036-a5ee65de3d11 ; telly.becker@rustic-hw.com ; telly.becker@rustic-hw.com ; Telly Becker ; mr         ; Custom Retail, b2bcustomergroup,standardPermissions                  ;                      ;                                          ; ptronics-standalone ;
+                         ; PTronics Standalone Customer 2 ; carla.levi@rustic-hw.com|ptronics-standalone   ; 4c170f80-fd8c-48f7-a7b4-4e8d759a3b22 ; carla.levi@rustic-hw.com   ; carla.levi@rustic-hw.com   ; Carla Levi   ; mr         ; Services East, b2bcustomergroup,standardPermissions,b2bapprovergroup ;                      ;                                          ; ptronics-standalone ;
+
+UPDATE B2BCustomer; uid[unique = true]                             ; approvers(uid)
+                  ; telly.becker@rustic-hw.com|ptronics-standalone ; carla.levi@rustic-hw.com|ptronics-standalone
+
+
+INSERT_UPDATE SiteEmployeeGroup; uid[unique = true]        ; visibleSite(uid)    ; groups(uid)
+                               ; ptronics-standalone-group ; ptronics-standalone ; multisitegroup
+
+INSERT_UPDATE Employee; uid[unique = true]      ; groups(uid)[mode = append]                                  ; loginDisabled[default = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                      ; csa-ptronics-standalone ; customersupportadministratorgroup,ptronics-standalone-group ;
+
+INSERT_UPDATE Employee; uid[unique = true]                 ; groups(uid)                                                               ; loginDisabled[default = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                      ; asagent-ptronics-standalone        ; asagentsalesmanagergroup, customermanagergroup, ptronics-standalone-group ;
+                      ; asagentsales-ptronics-standalone   ; asagentsalesgroup, ptronics-standalone-group                              ;
+                      ; asagentmanager-ptronics-standalone ; asagentsalesmanagergroup, ptronics-standalone-group                       ;
+
+INSERT_UPDATE Employee; UID[unique = true] ; groups(uid)[mode = append]                                                ; loginDisabled[default = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                      ; asagent-all        ; asagentsalesmanagergroup, customermanagergroup, ptronics-standalone-group ;
+                      ; asagentsales-all   ; asagentsalesgroup, ptronics-standalone-group                              ;
+                      ; asagentmanager-all ; asagentsalesmanagergroup, ptronics-standalone-group                       ;
+
+INSERT_UPDATE CustomerList; uid[unique = true]; implementationType; priority; members(uid)[mode = append]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                          ; instoreCustomers  ; "IN_STORE"        ; 3       ; asagent-all, asagent-ptronics-standalone
+                          ; bopisCustomers    ; "BOPIS"           ; 2       ; asagent-all, asagent-ptronics-standalone
+
+INSERT_UPDATE Employee; UID[unique = true]                               ; groups(uid)                                                  ; loginDisabled[default = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                      ; CustomerSupportAdministrator-ptronics-standalone ; customersupportadministratorgroup, ptronics-standalone-group ;
+                      ; CustomerSupportManager-ptronics-standalone       ; customersupportmanagergroup, ptronics-standalone-group       ;
+                      ; CustomerSupportAgent-ptronics-standalone         ; customersupportagentgroup, ptronics-standalone-group         ;
+
+INSERT_UPDATE Employee; UID[unique = true]               ; groups(uid)[mode = append]                                   ; loginDisabled[default = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                      ; CustomerSupportAdministrator-all ; customersupportadministratorgroup, ptronics-standalone-group ;
+                      ; CustomerSupportManager-all       ; customersupportmanagergroup, ptronics-standalone-group       ;
+                      ; CustomerSupportAgent-all         ; customersupportagentgroup, ptronics-standalone-group         ;
+
+INSERT_UPDATE PrincipalGroupRelation; source(uid)[unique = true]                     ; target(uid)[unique = true]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+    if(!extensionNames.contains(""customersupportbackoffice"") ||  !extensionNames.contains(""assistedserviceservices""))
+    {
+        LOG.info(""Sample data for assistedserviceservices was skipped because the extensions are not included in the setup"");
+        line.clear();
+    }
+"
+                                    ; asagent-ptronics-standalone                    ; nakanostoreemployees
+                                    ; asagent-ptronics-standalone                    ; ichikawastoreemployees
+                                    ; telly.becker@rustic-hw.com|ptronics-standalone ; POS_NAKANO
+                                    ; carla.levi@rustic-hw.com|ptronics-standalone   ; POS_ICHIKAWA
+
+### Sample promotions of Promotion-Engine ###
+INSERT_UPDATE UserGroup; uid[unique = true]; groups(uid); locname[lang = en]
+"#%beforeEach:
+import de.hybris.platform.core.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.StringUtils;
+import de.hybris.platform.util.Config;
+
+Logger LOG = LoggerFactory.getLogger(""ImpExImportReader"");
+extensionNames = Registry.getCurrentTenant().getTenantSpecificExtensionNames();
+extensionName = ""couponservices"";
+if(!extensionNames.contains(extensionName))
+{
+	templateId = line.get(1);
+	LOG.info(""UserGroup [{}] was skipped because the extension [{}] is not included in the setup"", templateId, extensionName);
+	line.clear();
+}
+"
+                       ; bronzeloyalty     ;            ; Bronze Loyalty
+                       ; silverloyalty     ;            ; Silver Loyalty
+                       ; goldloyalty       ;            ; Gold Loyalty
+### END Sample promotions of Promotion-Engine ###

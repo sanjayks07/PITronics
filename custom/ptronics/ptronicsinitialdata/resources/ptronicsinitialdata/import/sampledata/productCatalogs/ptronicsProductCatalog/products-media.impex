@@ -1,0 +1,354 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImPex for Importing Product Media into PTronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=ptronicsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$siteResource=jar:com.hybris.ptronics.initialdata.constants.PTronicsInitialDataConstants&/ptronicsinitialdata/import/sampledata/productCatalogs/$productCatalog
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+;1200Wx1200H;/1200Wx1200H/acer_predator.jpg;$siteResource/images/1200Wx1200H/acer_predator.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/acer_travelmate.jpg;$siteResource/images/1200Wx1200H/acer_travelmate.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/ambrane_charger.jpg;$siteResource/images/1200Wx1200H/ambrane_charger.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/apple_charger.jpg;$siteResource/images/1200Wx1200H/apple_charger.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/apple_keyboard.jpg;$siteResource/images/1200Wx1200H/apple_keyboard.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/apple_pro_display.jpg;$siteResource/images/1200Wx1200H/apple_pro_display.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_charger.jpeg;$siteResource/images/1200Wx1200H/asus_charger.jpeg ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_desktop_aio.jpg;$siteResource/images/1200Wx1200H/asus_desktop_aio.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_desktop_aioA5.jpg;$siteResource/images/1200Wx1200H/asus_desktop_aioA5.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_keyboard.jpg;$siteResource/images/1200Wx1200H/asus_keyboard.jpg           ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_rog_strixscar.jpg;$siteResource/images/1200Wx1200H/asus_rog_strixscar.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_rog_zephyrus.jpg;$siteResource/images/1200Wx1200H/asus_rog_zephyrus.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/asus_webcam.jpg;$siteResource/images/1200Wx1200H/asus_webcam.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_adapter.jpg;$siteResource/images/1200Wx1200H/dell_adapter.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_alienware.jpg;$siteResource/images/1200Wx1200H/dell_alienware.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_desktop_aio.jpg;$siteResource/images/1200Wx1200H/dell_desktop_aio.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_desktop_all_in_one.jpg;$siteResource/images/1200Wx1200H/dell_desktop_all_in_one.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_keyboard.jpg;$siteResource/images/1200Wx1200H/dell_keyboard.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_ultrasharp.jpg;$siteResource/images/1200Wx1200H/dell_ultrasharp.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/dell_xps.jpg;$siteResource/images/1200Wx1200H/dell_xps.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/galaxy_book3.jpg;$siteResource/images/1200Wx1200H/galaxy_book3.jpg ; ; ;
+;1200Wx1200H;/1200Wx1200H/galaxy_book4.jpg;$siteResource/images/1200Wx1200H/galaxy_book4.jpg
+;1200Wx1200H;/1200Wx1200H/hp_charger.jpg;$siteResource/images/1200Wx1200H/hp_charger.jpg
+;1200Wx1200H;/1200Wx1200H/hp_desktop_all_in_one.jpg;$siteResource/images/1200Wx1200H/hp_desktop_all_in_one.jpg
+;1200Wx1200H;/1200Wx1200H/hp_desktop_envy.jpg;$siteResource/images/1200Wx1200H/hp_desktop_envy.jpg
+;1200Wx1200H;/1200Wx1200H/hp_envy.jpg;$siteResource/images/1200Wx1200H/hp_envy.jpg
+;1200Wx1200H;/1200Wx1200H/hp_webcam_w500.jpg;$siteResource/images/1200Wx1200H/hp_webcam_w500.jpg
+;1200Wx1200H;/1200Wx1200H/hp_zbook.jpg;$siteResource/images/1200Wx1200H/hp_zbook.jpg
+;1200Wx1200H;/1200Wx1200H/jbl_headphone.jpg;$siteResource/images/1200Wx1200H/jbl_headphone.jpg
+;1200Wx1200H;/1200Wx1200H/lenovo_desktop_aio.jpg;$siteResource/images/1200Wx1200H/lenovo_desktop_aio.jpg
+;1200Wx1200H;/1200Wx1200H/lenovo_legion.jpg;$siteResource/images/1200Wx1200H/lenovo_legion.jpg
+;1200Wx1200H;/1200Wx1200H/lenovo_webcam_net.jpeg;$siteResource/images/1200Wx1200H/lenovo_webcam_net.jpeg
+;1200Wx1200H;/1200Wx1200H/lenovo_yoga9.jpg;$siteResource/images/1200Wx1200H/lenovo_yoga9.jpg
+;1200Wx1200H;/1200Wx1200H/macbook_air.jpg;$siteResource/images/1200Wx1200H/macbook_air.jpg
+;1200Wx1200H;/1200Wx1200H/macbook_pro.jpg;$siteResource/images/1200Wx1200H/macbook_pro.jpg
+;1200Wx1200H;/1200Wx1200H/protronics_adapter.jpg;$siteResource/images/1200Wx1200H/protronics_adapter.jpg
+;1200Wx1200H;/1200Wx1200H/protronics_mouse_tode.jpg;$siteResource/images/1200Wx1200H/protronics_mouse_tode.jpg
+;1200Wx1200H;/1200Wx1200H/razer_mouse.jpg;$siteResource/images/1200Wx1200H/razer_mouse.jpg
+;1200Wx1200H;/1200Wx1200H/samsung_odyssey.jpg;$siteResource/images/1200Wx1200H/samsung_odyssey.jpg
+;1200Wx1200H;/1200Wx1200H/sony_headphone.jpg;$siteResource/images/1200Wx1200H/sony_headphone.jpg
+
+;515Wx515H;/515Wx515H/acer_predator.jpg;$siteResource/images/515Wx515H/acer_predator.jpg
+;515Wx515H;/515Wx515H/acer_travelmate.jpg;$siteResource/images/515Wx515H/acer_travelmate.jpg
+;515Wx515H;/515Wx515H/ambrane_charger.jpg;$siteResource/images/515Wx515H/ambrane_charger.jpg
+;515Wx515H;/515Wx515H/apple_charger.jpg;$siteResource/images/515Wx515H/apple_charger.jpg
+;515Wx515H;/515Wx515H/apple_keyboard.jpg;$siteResource/images/515Wx515H/apple_keyboard.jpg
+;515Wx515H;/515Wx515H/apple_pro_display.jpg;$siteResource/images/515Wx515H/apple_pro_display.jpg
+;515Wx515H;/515Wx515H/asus_charger.jpeg;$siteResource/images/515Wx515H/asus_charger.jpeg
+;515Wx515H;/515Wx515H/asus_desktop_aio.jpg;$siteResource/images/515Wx515H/asus_desktop_aio.jpg
+;515Wx515H;/515Wx515H/asus_desktop_aioA5.jpg;$siteResource/images/515Wx515H/asus_desktop_aioA5.jpg
+;515Wx515H;/515Wx515H/asus_keyboard.jpg;$siteResource/images/515Wx515H/asus_keyboard.jpg
+;515Wx515H;/515Wx515H/asus_rog_strixscar.jpg;$siteResource/images/515Wx515H/asus_rog_strixscar.jpg
+;515Wx515H;/515Wx515H/asus_rog_zephyrus.jpg;$siteResource/images/515Wx515H/asus_rog_zephyrus.jpg
+;515Wx515H;/515Wx515H/asus_webcam.jpg;$siteResource/images/515Wx515H/asus_webcam.jpg
+;515Wx515H;/515Wx515H/dell_adapter.jpg;$siteResource/images/515Wx515H/dell_adapter.jpg
+;515Wx515H;/515Wx515H/dell_alienware.jpg;$siteResource/images/515Wx515H/dell_alienware.jpg
+;515Wx515H;/515Wx515H/dell_desktop_aio.jpg;$siteResource/images/515Wx515H/dell_desktop_aio.jpg
+;515Wx515H;/515Wx515H/dell_desktop_all_in_one.jpg;$siteResource/images/515Wx515H/dell_desktop_all_in_one.jpg
+;515Wx515H;/515Wx515H/dell_keyboard.jpg;$siteResource/images/515Wx515H/dell_keyboard.jpg
+;515Wx515H;/515Wx515H/dell_ultrasharp.jpg;$siteResource/images/515Wx515H/dell_ultrasharp.jpg
+;515Wx515H;/515Wx515H/dell_xps.jpg;$siteResource/images/515Wx515H/dell_xps.jpg
+;515Wx515H;/515Wx515H/galaxy_book3.jpg;$siteResource/images/515Wx515H/galaxy_book3.jpg
+;515Wx515H;/515Wx515H/galaxy_book4.jpg;$siteResource/images/515Wx515H/galaxy_book4.jpg
+;515Wx515H;/515Wx515H/hp_charger.jpg;$siteResource/images/515Wx515H/hp_charger.jpg
+;515Wx515H;/515Wx515H/hp_desktop_all_in_one.jpg;$siteResource/images/515Wx515H/hp_desktop_all_in_one.jpg
+;515Wx515H;/515Wx515H/hp_desktop_envy.jpg;$siteResource/images/515Wx515H/hp_desktop_envy.jpg
+;515Wx515H;/515Wx515H/hp_envy.jpg;$siteResource/images/515Wx515H/hp_envy.jpg
+;515Wx515H;/515Wx515H/hp_webcam_w500.jpg;$siteResource/images/515Wx515H/hp_webcam_w500.jpg
+;515Wx515H;/515Wx515H/hp_zbook.jpg;$siteResource/images/515Wx515H/hp_zbook.jpg
+;515Wx515H;/515Wx515H/jbl_headphone.jpg;$siteResource/images/515Wx515H/jbl_headphone.jpg
+;515Wx515H;/515Wx515H/lenovo_desktop_aio.jpg;$siteResource/images/515Wx515H/lenovo_desktop_aio.jpg
+;515Wx515H;/515Wx515H/lenovo_legion.jpg;$siteResource/images/515Wx515H/lenovo_legion.jpg
+;515Wx515H;/515Wx515H/lenovo_webcam_net.jpeg;$siteResource/images/515Wx515H/lenovo_webcam_net.jpeg
+;515Wx515H;/515Wx515H/lenovo_yoga9.jpg;$siteResource/images/515Wx515H/lenovo_yoga9.jpg
+;515Wx515H;/515Wx515H/macbook_air.jpg;$siteResource/images/515Wx515H/macbook_air.jpg
+;515Wx515H;/515Wx515H/macbook_pro.jpg;$siteResource/images/515Wx515H/macbook_pro.jpg
+;515Wx515H;/515Wx515H/protronics_adapter.jpg;$siteResource/images/515Wx515H/protronics_adapter.jpg
+;515Wx515H;/515Wx515H/protronics_mouse_tode.jpg;$siteResource/images/515Wx515H/protronics_mouse_tode.jpg
+;515Wx515H;/515Wx515H/razer_mouse.jpg;$siteResource/images/515Wx515H/razer_mouse.jpg
+;515Wx515H;/515Wx515H/samsung_odyssey.jpg;$siteResource/images/515Wx515H/samsung_odyssey.jpg
+;515Wx515H;/515Wx515H/sony_headphone.jpg;$siteResource/images/515Wx515H/sony_headphone.jpg
+
+;300Wx300H;/300Wx300H/acer_predator.jpg;$siteResource/images/300Wx300H/acer_predator.jpg
+;300Wx300H;/300Wx300H/acer_travelmate.jpg;$siteResource/images/300Wx300H/acer_travelmate.jpg
+;300Wx300H;/300Wx300H/ambrane_charger.jpg;$siteResource/images/300Wx300H/ambrane_charger.jpg
+;300Wx300H;/300Wx300H/apple_charger.jpg;$siteResource/images/300Wx300H/apple_charger.jpg
+;300Wx300H;/300Wx300H/apple_keyboard.jpg;$siteResource/images/300Wx300H/apple_keyboard.jpg
+;300Wx300H;/300Wx300H/apple_pro_display.jpg;$siteResource/images/300Wx300H/apple_pro_display.jpg
+;300Wx300H;/300Wx300H/asus_charger.jpeg;$siteResource/images/300Wx300H/asus_charger.jpeg
+;300Wx300H;/300Wx300H/asus_desktop_aio.jpg;$siteResource/images/300Wx300H/asus_desktop_aio.jpg
+;300Wx300H;/300Wx300H/asus_desktop_aioA5.jpg;$siteResource/images/300Wx300H/asus_desktop_aioA5.jpg
+;300Wx300H;/300Wx300H/asus_keyboard.jpg;$siteResource/images/300Wx300H/asus_keyboard.jpg
+;300Wx300H;/300Wx300H/asus_rog_strixscar.jpg;$siteResource/images/300Wx300H/asus_rog_strixscar.jpg
+;300Wx300H;/300Wx300H/asus_rog_zephyrus.jpg;$siteResource/images/300Wx300H/asus_rog_zephyrus.jpg
+;300Wx300H;/300Wx300H/asus_webcam.jpg;$siteResource/images/300Wx300H/asus_webcam.jpg
+;300Wx300H;/300Wx300H/dell_adapter.jpg;$siteResource/images/300Wx300H/dell_adapter.jpg
+;300Wx300H;/300Wx300H/dell_alienware.jpg;$siteResource/images/300Wx300H/dell_alienware.jpg
+;300Wx300H;/300Wx300H/dell_desktop_aio.jpg;$siteResource/images/300Wx300H/dell_desktop_aio.jpg
+;300Wx300H;/300Wx300H/dell_desktop_all_in_one.jpg;$siteResource/images/300Wx300H/dell_desktop_all_in_one.jpg
+;300Wx300H;/300Wx300H/dell_keyboard.jpg;$siteResource/images/300Wx300H/dell_keyboard.jpg
+;300Wx300H;/300Wx300H/dell_ultrasharp.jpg;$siteResource/images/300Wx300H/dell_ultrasharp.jpg
+;300Wx300H;/300Wx300H/dell_xps.jpg;$siteResource/images/300Wx300H/dell_xps.jpg
+;300Wx300H;/300Wx300H/galaxy_book3.jpg;$siteResource/images/300Wx300H/galaxy_book3.jpg
+;300Wx300H;/300Wx300H/galaxy_book4.jpg;$siteResource/images/300Wx300H/galaxy_book4.jpg
+;300Wx300H;/300Wx300H/hp_charger.jpg;$siteResource/images/300Wx300H/hp_charger.jpg
+;300Wx300H;/300Wx300H/hp_desktop_all_in_one.jpg;$siteResource/images/300Wx300H/hp_desktop_all_in_one.jpg
+;300Wx300H;/300Wx300H/hp_desktop_envy.jpg;$siteResource/images/300Wx300H/hp_desktop_envy.jpg
+;300Wx300H;/300Wx300H/hp_envy.jpg;$siteResource/images/300Wx300H/hp_envy.jpg
+;300Wx300H;/300Wx300H/hp_webcam_w500.jpg;$siteResource/images/300Wx300H/hp_webcam_w500.jpg
+;300Wx300H;/300Wx300H/hp_zbook.jpg;$siteResource/images/300Wx300H/hp_zbook.jpg
+;300Wx300H;/300Wx300H/jbl_headphone.jpg;$siteResource/images/300Wx300H/jbl_headphone.jpg
+;300Wx300H;/300Wx300H/lenovo_desktop_aio.jpg;$siteResource/images/300Wx300H/lenovo_desktop_aio.jpg
+;300Wx300H;/300Wx300H/lenovo_legion.jpg;$siteResource/images/300Wx300H/lenovo_legion.jpg
+;300Wx300H;/300Wx300H/lenovo_webcam_net.jpeg;$siteResource/images/300Wx300H/lenovo_webcam_net.jpeg
+;300Wx300H;/300Wx300H/lenovo_yoga9.jpg;$siteResource/images/300Wx300H/lenovo_yoga9.jpg
+;300Wx300H;/300Wx300H/macbook_air.jpg;$siteResource/images/300Wx300H/macbook_air.jpg
+;300Wx300H;/300Wx300H/macbook_pro.jpg;$siteResource/images/300Wx300H/macbook_pro.jpg
+;300Wx300H;/300Wx300H/protronics_adapter.jpg;$siteResource/images/300Wx300H/protronics_adapter.jpg
+;300Wx300H;/300Wx300H/protronics_mouse_tode.jpg;$siteResource/images/300Wx300H/protronics_mouse_tode.jpg
+;300Wx300H;/300Wx300H/razer_mouse.jpg;$siteResource/images/300Wx300H/razer_mouse.jpg
+;300Wx300H;/300Wx300H/samsung_odyssey.jpg;$siteResource/images/300Wx300H/samsung_odyssey.jpg
+;300Wx300H;/300Wx300H/sony_headphone.jpg;$siteResource/images/300Wx300H/sony_headphone.jpg
+
+;96Wx96H;/96Wx96H/acer_predator.jpg;$siteResource/images/96Wx96H/acer_predator.jpg
+;96Wx96H;/96Wx96H/acer_travelmate.jpg;$siteResource/images/96Wx96H/acer_travelmate.jpg
+;96Wx96H;/96Wx96H/ambrane_charger.jpg;$siteResource/images/96Wx96H/ambrane_charger.jpg
+;96Wx96H;/96Wx96H/apple_charger.jpg;$siteResource/images/96Wx96H/apple_charger.jpg
+;96Wx96H;/96Wx96H/apple_keyboard.jpg;$siteResource/images/96Wx96H/apple_keyboard.jpg
+;96Wx96H;/96Wx96H/apple_pro_display.jpg;$siteResource/images/96Wx96H/apple_pro_display.jpg
+;96Wx96H;/96Wx96H/asus_charger.jpeg;$siteResource/images/96Wx96H/asus_charger.jpeg
+;96Wx96H;/96Wx96H/asus_desktop_aio.jpg;$siteResource/images/96Wx96H/asus_desktop_aio.jpg
+;96Wx96H;/96Wx96H/asus_desktop_aioA5.jpg;$siteResource/images/96Wx96H/asus_desktop_aioA5.jpg
+;96Wx96H;/96Wx96H/asus_keyboard.jpg;$siteResource/images/96Wx96H/asus_keyboard.jpg
+;96Wx96H;/96Wx96H/asus_rog_strixscar.jpg;$siteResource/images/96Wx96H/asus_rog_strixscar.jpg
+;96Wx96H;/96Wx96H/asus_rog_zephyrus.jpg;$siteResource/images/96Wx96H/asus_rog_zephyrus.jpg
+;96Wx96H;/96Wx96H/asus_webcam.jpg;$siteResource/images/96Wx96H/asus_webcam.jpg
+;96Wx96H;/96Wx96H/dell_adapter.jpg;$siteResource/images/96Wx96H/dell_adapter.jpg
+;96Wx96H;/96Wx96H/dell_alienware.jpg;$siteResource/images/96Wx96H/dell_alienware.jpg
+;96Wx96H;/96Wx96H/dell_desktop_aio.jpg;$siteResource/images/96Wx96H/dell_desktop_aio.jpg
+;96Wx96H;/96Wx96H/dell_desktop_all_in_one.jpg;$siteResource/images/96Wx96H/dell_desktop_all_in_one.jpg
+;96Wx96H;/96Wx96H/dell_keyboard.jpg;$siteResource/images/96Wx96H/dell_keyboard.jpg
+;96Wx96H;/96Wx96H/dell_ultrasharp.jpg;$siteResource/images/96Wx96H/dell_ultrasharp.jpg
+;96Wx96H;/96Wx96H/dell_xps.jpg;$siteResource/images/96Wx96H/dell_xps.jpg
+;96Wx96H;/96Wx96H/galaxy_book3.jpg;$siteResource/images/96Wx96H/galaxy_book3.jpg
+;96Wx96H;/96Wx96H/galaxy_book4.jpg;$siteResource/images/96Wx96H/galaxy_book4.jpg
+;96Wx96H;/96Wx96H/hp_charger.jpg;$siteResource/images/96Wx96H/hp_charger.jpg
+;96Wx96H;/96Wx96H/hp_desktop_all_in_one.jpg;$siteResource/images/96Wx96H/hp_desktop_all_in_one.jpg
+;96Wx96H;/96Wx96H/hp_desktop_envy.jpg;$siteResource/images/96Wx96H/hp_desktop_envy.jpg
+;96Wx96H;/96Wx96H/hp_envy.jpg;$siteResource/images/96Wx96H/hp_envy.jpg
+;96Wx96H;/96Wx96H/hp_webcam_w500.jpg;$siteResource/images/96Wx96H/hp_webcam_w500.jpg
+;96Wx96H;/96Wx96H/hp_zbook.jpg;$siteResource/images/96Wx96H/hp_zbook.jpg
+;96Wx96H;/96Wx96H/jbl_headphone.jpg;$siteResource/images/96Wx96H/jbl_headphone.jpg
+;96Wx96H;/96Wx96H/lenovo_desktop_aio.jpg;$siteResource/images/96Wx96H/lenovo_desktop_aio.jpg
+;96Wx96H;/96Wx96H/lenovo_legion.jpg;$siteResource/images/96Wx96H/lenovo_legion.jpg
+;96Wx96H;/96Wx96H/lenovo_webcam_net.jpeg;$siteResource/images/96Wx96H/lenovo_webcam_net.jpeg
+;96Wx96H;/96Wx96H/lenovo_yoga9.jpg;$siteResource/images/96Wx96H/lenovo_yoga9.jpg
+;96Wx96H;/96Wx96H/macbook_air.jpg;$siteResource/images/96Wx96H/macbook_air.jpg
+;96Wx96H;/96Wx96H/macbook_pro.jpg;$siteResource/images/96Wx96H/macbook_pro.jpg
+;96Wx96H;/96Wx96H/protronics_adapter.jpg;$siteResource/images/96Wx96H/protronics_adapter.jpg
+;96Wx96H;/96Wx96H/protronics_mouse_tode.jpg;$siteResource/images/96Wx96H/protronics_mouse_tode.jpg
+;96Wx96H;/96Wx96H/razer_mouse.jpg;$siteResource/images/96Wx96H/razer_mouse.jpg
+;96Wx96H;/96Wx96H/samsung_odyssey.jpg;$siteResource/images/96Wx96H/samsung_odyssey.jpg
+;96Wx96H;/96Wx96H/sony_headphone.jpg;$siteResource/images/96Wx96H/sony_headphone.jpg
+
+;65Wx65H;/65Wx65H/acer_predator.jpg;$siteResource/images/65Wx65H/acer_predator.jpg
+;65Wx65H;/65Wx65H/acer_travelmate.jpg;$siteResource/images/65Wx65H/acer_travelmate.jpg
+;65Wx65H;/65Wx65H/ambrane_charger.jpg;$siteResource/images/65Wx65H/ambrane_charger.jpg
+;65Wx65H;/65Wx65H/apple_charger.jpg;$siteResource/images/65Wx65H/apple_charger.jpg
+;65Wx65H;/65Wx65H/apple_keyboard.jpg;$siteResource/images/65Wx65H/apple_keyboard.jpg
+;65Wx65H;/65Wx65H/apple_pro_display.jpg;$siteResource/images/65Wx65H/apple_pro_display.jpg
+;65Wx65H;/65Wx65H/asus_charger.jpeg;$siteResource/images/65Wx65H/asus_charger.jpeg
+;65Wx65H;/65Wx65H/asus_desktop_aio.jpg;$siteResource/images/65Wx65H/asus_desktop_aio.jpg
+;65Wx65H;/65Wx65H/asus_desktop_aioA5.jpg;$siteResource/images/65Wx65H/asus_desktop_aioA5.jpg
+;65Wx65H;/65Wx65H/asus_keyboard.jpg;$siteResource/images/65Wx65H/asus_keyboard.jpg
+;65Wx65H;/65Wx65H/asus_rog_strixscar.jpg;$siteResource/images/65Wx65H/asus_rog_strixscar.jpg
+;65Wx65H;/65Wx65H/asus_rog_zephyrus.jpg;$siteResource/images/65Wx65H/asus_rog_zephyrus.jpg
+;65Wx65H;/65Wx65H/asus_webcam.jpg;$siteResource/images/65Wx65H/asus_webcam.jpg
+;65Wx65H;/65Wx65H/dell_adapter.jpg;$siteResource/images/65Wx65H/dell_adapter.jpg
+;65Wx65H;/65Wx65H/dell_alienware.jpg;$siteResource/images/65Wx65H/dell_alienware.jpg
+;65Wx65H;/65Wx65H/dell_desktop_aio.jpg;$siteResource/images/65Wx65H/dell_desktop_aio.jpg
+;65Wx65H;/65Wx65H/dell_desktop_all_in_one.jpg;$siteResource/images/65Wx65H/dell_desktop_all_in_one.jpg
+;65Wx65H;/65Wx65H/dell_keyboard.jpg;$siteResource/images/65Wx65H/dell_keyboard.jpg
+;65Wx65H;/65Wx65H/dell_ultrasharp.jpg;$siteResource/images/65Wx65H/dell_ultrasharp.jpg
+;65Wx65H;/65Wx65H/dell_xps.jpg;$siteResource/images/65Wx65H/dell_xps.jpg
+;65Wx65H;/65Wx65H/galaxy_book3.jpg;$siteResource/images/65Wx65H/galaxy_book3.jpg
+;65Wx65H;/65Wx65H/galaxy_book4.jpg;$siteResource/images/65Wx65H/galaxy_book4.jpg
+;65Wx65H;/65Wx65H/hp_charger.jpg;$siteResource/images/65Wx65H/hp_charger.jpg
+;65Wx65H;/65Wx65H/hp_desktop_all_in_one.jpg;$siteResource/images/65Wx65H/hp_desktop_all_in_one.jpg
+;65Wx65H;/65Wx65H/hp_desktop_envy.jpg;$siteResource/images/65Wx65H/hp_desktop_envy.jpg
+;65Wx65H;/65Wx65H/hp_envy.jpg;$siteResource/images/65Wx65H/hp_envy.jpg
+;65Wx65H;/65Wx65H/hp_webcam_w500.jpg;$siteResource/images/65Wx65H/hp_webcam_w500.jpg
+;65Wx65H;/65Wx65H/hp_zbook.jpg;$siteResource/images/65Wx65H/hp_zbook.jpg
+;65Wx65H;/65Wx65H/jbl_headphone.jpg;$siteResource/images/65Wx65H/jbl_headphone.jpg
+;65Wx65H;/65Wx65H/lenovo_desktop_aio.jpg;$siteResource/images/65Wx65H/lenovo_desktop_aio.jpg
+;65Wx65H;/65Wx65H/lenovo_legion.jpg;$siteResource/images/65Wx65H/lenovo_legion.jpg
+;65Wx65H;/65Wx65H/lenovo_webcam_net.jpeg;$siteResource/images/65Wx65H/lenovo_webcam_net.jpeg
+;65Wx65H;/65Wx65H/lenovo_yoga9.jpg;$siteResource/images/65Wx65H/lenovo_yoga9.jpg
+;65Wx65H;/65Wx65H/macbook_air.jpg;$siteResource/images/65Wx65H/macbook_air.jpg
+;65Wx65H;/65Wx65H/macbook_pro.jpg;$siteResource/images/65Wx65H/macbook_pro.jpg
+;65Wx65H;/65Wx65H/protronics_adapter.jpg;$siteResource/images/65Wx65H/protronics_adapter.jpg
+;65Wx65H;/65Wx65H/protronics_mouse_tode.jpg;$siteResource/images/65Wx65H/protronics_mouse_tode.jpg
+;65Wx65H;/65Wx65H/razer_mouse.jpg;$siteResource/images/65Wx65H/razer_mouse.jpg
+;65Wx65H;/65Wx65H/samsung_odyssey.jpg;$siteResource/images/65Wx65H/samsung_odyssey.jpg
+;65Wx65H;/65Wx65H/sony_headphone.jpg;$siteResource/images/65Wx65H/sony_headphone.jpg
+
+;30Wx30H;/30Wx30H/acer_predator.jpg;$siteResource/images/30Wx30H/acer_predator.jpg
+;30Wx30H;/30Wx30H/acer_travelmate.jpg;$siteResource/images/30Wx30H/acer_travelmate.jpg
+;30Wx30H;/30Wx30H/ambrane_charger.jpg;$siteResource/images/30Wx30H/ambrane_charger.jpg
+;30Wx30H;/30Wx30H/apple_charger.jpg;$siteResource/images/30Wx30H/apple_charger.jpg
+;30Wx30H;/30Wx30H/apple_keyboard.jpg;$siteResource/images/30Wx30H/apple_keyboard.jpg
+;30Wx30H;/30Wx30H/apple_pro_display.jpg;$siteResource/images/30Wx30H/apple_pro_display.jpg
+;30Wx30H;/30Wx30H/asus_charger.jpeg;$siteResource/images/30Wx30H/asus_charger.jpeg
+;30Wx30H;/30Wx30H/asus_desktop_aio.jpg;$siteResource/images/30Wx30H/asus_desktop_aio.jpg
+;30Wx30H;/30Wx30H/asus_desktop_aioA5.jpg;$siteResource/images/30Wx30H/asus_desktop_aioA5.jpg
+;30Wx30H;/30Wx30H/asus_keyboard.jpg;$siteResource/images/30Wx30H/asus_keyboard.jpg
+;30Wx30H;/30Wx30H/asus_rog_strixscar.jpg;$siteResource/images/30Wx30H/asus_rog_strixscar.jpg
+;30Wx30H;/30Wx30H/asus_rog_zephyrus.jpg;$siteResource/images/30Wx30H/asus_rog_zephyrus.jpg
+;30Wx30H;/30Wx30H/asus_webcam.jpg;$siteResource/images/30Wx30H/asus_webcam.jpg
+;30Wx30H;/30Wx30H/dell_adapter.jpg;$siteResource/images/30Wx30H/dell_adapter.jpg
+;30Wx30H;/30Wx30H/dell_alienware.jpg;$siteResource/images/30Wx30H/dell_alienware.jpg
+;30Wx30H;/30Wx30H/dell_desktop_aio.jpg;$siteResource/images/30Wx30H/dell_desktop_aio.jpg
+;30Wx30H;/30Wx30H/dell_desktop_all_in_one.jpg;$siteResource/images/30Wx30H/dell_desktop_all_in_one.jpg
+;30Wx30H;/30Wx30H/dell_keyboard.jpg;$siteResource/images/30Wx30H/dell_keyboard.jpg
+;30Wx30H;/30Wx30H/dell_ultrasharp.jpg;$siteResource/images/30Wx30H/dell_ultrasharp.jpg
+;30Wx30H;/30Wx30H/dell_xps.jpg;$siteResource/images/30Wx30H/dell_xps.jpg
+;30Wx30H;/30Wx30H/galaxy_book3.jpg;$siteResource/images/30Wx30H/galaxy_book3.jpg
+;30Wx30H;/30Wx30H/galaxy_book4.jpg;$siteResource/images/30Wx30H/galaxy_book4.jpg
+;30Wx30H;/30Wx30H/hp_charger.jpg;$siteResource/images/30Wx30H/hp_charger.jpg
+;30Wx30H;/30Wx30H/hp_desktop_all_in_one.jpg;$siteResource/images/30Wx30H/hp_desktop_all_in_one.jpg
+;30Wx30H;/30Wx30H/hp_desktop_envy.jpg;$siteResource/images/30Wx30H/hp_desktop_envy.jpg
+;30Wx30H;/30Wx30H/hp_envy.jpg;$siteResource/images/30Wx30H/hp_envy.jpg
+;30Wx30H;/30Wx30H/hp_webcam_w500.jpg;$siteResource/images/30Wx30H/hp_webcam_w500.jpg
+;30Wx30H;/30Wx30H/hp_zbook.jpg;$siteResource/images/30Wx30H/hp_zbook.jpg
+;30Wx30H;/30Wx30H/jbl_headphone.jpg;$siteResource/images/30Wx30H/jbl_headphone.jpg
+;30Wx30H;/30Wx30H/lenovo_desktop_aio.jpg;$siteResource/images/30Wx30H/lenovo_desktop_aio.jpg
+;30Wx30H;/30Wx30H/lenovo_legion.jpg;$siteResource/images/30Wx30H/lenovo_legion.jpg
+;30Wx30H;/30Wx30H/lenovo_webcam_net.jpeg;$siteResource/images/30Wx30H/lenovo_webcam_net.jpeg
+;30Wx30H;/30Wx30H/lenovo_yoga9.jpg;$siteResource/images/30Wx30H/lenovo_yoga9.jpg
+;30Wx30H;/30Wx30H/macbook_air.jpg;$siteResource/images/30Wx30H/macbook_air.jpg
+;30Wx30H;/30Wx30H/macbook_pro.jpg;$siteResource/images/30Wx30H/macbook_pro.jpg
+;30Wx30H;/30Wx30H/protronics_adapter.jpg;$siteResource/images/30Wx30H/protronics_adapter.jpg
+;30Wx30H;/30Wx30H/protronics_mouse_tode.jpg;$siteResource/images/30Wx30H/protronics_mouse_tode.jpg
+;30Wx30H;/30Wx30H/razer_mouse.jpg;$siteResource/images/30Wx30H/razer_mouse.jpg
+;30Wx30H;/30Wx30H/samsung_odyssey.jpg;$siteResource/images/30Wx30H/samsung_odyssey.jpg
+;30Wx30H;/30Wx30H/sony_headphone.jpg;$siteResource/images/30Wx30H/sony_headphone.jpg
+
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+;acer_predator;/1200Wx1200H/acer_predator.jpg,/515Wx515H/acer_predator.jpg,/300Wx300H/acer_predator.jpg,/96Wx96H/acer_predator.jpg,/65Wx65H/acer_predator.jpg,/30Wx30H/acer_predator.jpg;
+;acer_travelmate;/1200Wx1200H/acer_travelmate.jpg,/515Wx515H/acer_travelmate.jpg,/300Wx300H/acer_travelmate.jpg,/96Wx96H/acer_travelmate.jpg,/65Wx65H/acer_travelmate.jpg,/30Wx30H/acer_travelmate.jpg;
+;ambrane_charger;/1200Wx1200H/ambrane_charger.jpg,/515Wx515H/ambrane_charger.jpg,/300Wx300H/ambrane_charger.jpg,/96Wx96H/ambrane_charger.jpg,/65Wx65H/ambrane_charger.jpg,/30Wx30H/ambrane_charger.jpg;
+;apple_charger;/1200Wx1200H/apple_charger.jpg,/515Wx515H/apple_charger.jpg,/300Wx300H/apple_charger.jpg,/96Wx96H/apple_charger.jpg,/65Wx65H/apple_charger.jpg,/30Wx30H/apple_charger.jpg;
+;apple_keyboard;/1200Wx1200H/apple_keyboard.jpg,/515Wx515H/apple_keyboard.jpg,/300Wx300H/apple_keyboard.jpg,/96Wx96H/apple_keyboard.jpg,/65Wx65H/apple_keyboard.jpg,/30Wx30H/apple_keyboard.jpg;
+;apple_pro_display;/1200Wx1200H/apple_pro_display.jpg,/515Wx515H/apple_pro_display.jpg,/300Wx300H/apple_pro_display.jpg,/96Wx96H/apple_pro_display.jpg,/65Wx65H/apple_pro_display.jpg,/30Wx30H/apple_pro_display.jpg;
+;asus_charger;/1200Wx1200H/asus_charger.jpeg,/515Wx515H/asus_charger.jpeg,/300Wx300H/asus_charger.jpeg,/96Wx96H/asus_charger.jpeg,/65Wx65H/asus_charger.jpeg,/30Wx30H/asus_charger.jpeg;
+;asus_desktop_aio;/1200Wx1200H/asus_desktop_aio.jpg,/515Wx515H/asus_desktop_aio.jpg,/300Wx300H/asus_desktop_aio.jpg,/96Wx96H/asus_desktop_aio.jpg,/65Wx65H/asus_desktop_aio.jpg,/30Wx30H/asus_desktop_aio.jpg;
+;asus_desktop_aioA5;/1200Wx1200H/asus_desktop_aioA5.jpg,/515Wx515H/asus_desktop_aioA5.jpg,/300Wx300H/asus_desktop_aioA5.jpg,/96Wx96H/asus_desktop_aioA5.jpg,/65Wx65H/asus_desktop_aioA5.jpg,/30Wx30H/asus_desktop_aioA5.jpg;
+;asus_keyboard;/1200Wx1200H/asus_keyboard.jpg,/515Wx515H/asus_keyboard.jpg,/300Wx300H/asus_keyboard.jpg,/96Wx96H/asus_keyboard.jpg,/65Wx65H/asus_keyboard.jpg,/30Wx30H/asus_keyboard.jpg;
+;asus_rog_strixscar;/1200Wx1200H/asus_rog_strixscar.jpg,/515Wx515H/asus_rog_strixscar.jpg,/300Wx300H/asus_rog_strixscar.jpg,/96Wx96H/asus_rog_strixscar.jpg,/65Wx65H/asus_rog_strixscar.jpg,/30Wx30H/asus_rog_strixscar.jpg;
+;asus_rog_zephyrus;/1200Wx1200H/asus_rog_zephyrus.jpg,/515Wx515H/asus_rog_zephyrus.jpg,/300Wx300H/asus_rog_zephyrus.jpg,/96Wx96H/asus_rog_zephyrus.jpg,/65Wx65H/asus_rog_zephyrus.jpg,/30Wx30H/asus_rog_zephyrus.jpg;
+;asus_webcam;/1200Wx1200H/asus_webcam.jpg,/515Wx515H/asus_webcam.jpg,/300Wx300H/asus_webcam.jpg,/96Wx96H/asus_webcam.jpg,/65Wx65H/asus_webcam.jpg,/30Wx30H/asus_webcam.jpg;
+;dell_adapter;/1200Wx1200H/dell_adapter.jpg,/515Wx515H/dell_adapter.jpg,/300Wx300H/dell_adapter.jpg,/96Wx96H/dell_adapter.jpg,/65Wx65H/dell_adapter.jpg,/30Wx30H/dell_adapter.jpg;
+;dell_alienware;/1200Wx1200H/dell_alienware.jpg,/515Wx515H/dell_alienware.jpg,/300Wx300H/dell_alienware.jpg,/96Wx96H/dell_alienware.jpg,/65Wx65H/dell_alienware.jpg,/30Wx30H/dell_alienware.jpg;
+;dell_desktop_aio;/1200Wx1200H/dell_desktop_aio.jpg,/515Wx515H/dell_desktop_aio.jpg,/300Wx300H/dell_desktop_aio.jpg,/96Wx96H/dell_desktop_aio.jpg,/65Wx65H/dell_desktop_aio.jpg,/30Wx30H/dell_desktop_aio.jpg;
+;dell_desktop_all_in_one;/1200Wx1200H/dell_desktop_all_in_one.jpg,/515Wx515H/dell_desktop_all_in_one.jpg,/300Wx300H/dell_desktop_all_in_one.jpg,/96Wx96H/dell_desktop_all_in_one.jpg,/65Wx65H/dell_desktop_all_in_one.jpg,/30Wx30H/dell_desktop_all_in_one.jpg;
+;dell_keyboard;/1200Wx1200H/dell_keyboard.jpg,/515Wx515H/dell_keyboard.jpg,/300Wx300H/dell_keyboard.jpg,/96Wx96H/dell_keyboard.jpg,/65Wx65H/dell_keyboard.jpg,/30Wx30H/dell_keyboard.jpg;
+;dell_ultrasharp;/1200Wx1200H/dell_ultrasharp.jpg,/515Wx515H/dell_ultrasharp.jpg,/300Wx300H/dell_ultrasharp.jpg,/96Wx96H/dell_ultrasharp.jpg,/65Wx65H/dell_ultrasharp.jpg,/30Wx30H/dell_ultrasharp.jpg;
+;dell_xps;/1200Wx1200H/dell_xps.jpg,/515Wx515H/dell_xps.jpg,/300Wx300H/dell_xps.jpg,/96Wx96H/dell_xps.jpg,/65Wx65H/dell_xps.jpg,/30Wx30H/dell_xps.jpg;
+;galaxy_book3;/1200Wx1200H/galaxy_book3.jpg,/515Wx515H/galaxy_book3.jpg,/300Wx300H/galaxy_book3.jpg,/96Wx96H/galaxy_book3.jpg,/65Wx65H/galaxy_book3.jpg,/30Wx30H/galaxy_book3.jpg;
+;galaxy_book4;/1200Wx1200H/galaxy_book4.jpg,/515Wx515H/galaxy_book4.jpg,/300Wx300H/galaxy_book4.jpg,/96Wx96H/galaxy_book4.jpg,/65Wx65H/galaxy_book4.jpg,/30Wx30H/galaxy_book4.jpg;
+;hp_charger;/1200Wx1200H/hp_charger.jpg,/515Wx515H/hp_charger.jpg,/300Wx300H/hp_charger.jpg,/96Wx96H/hp_charger.jpg,/65Wx65H/hp_charger.jpg,/30Wx30H/hp_charger.jpg;
+;hp_desktop_all_in_one;/1200Wx1200H/hp_desktop_all_in_one.jpg,/515Wx515H/hp_desktop_all_in_one.jpg,/300Wx300H/hp_desktop_all_in_one.jpg,/96Wx96H/hp_desktop_all_in_one.jpg,/65Wx65H/hp_desktop_all_in_one.jpg,/30Wx30H/hp_desktop_all_in_one.jpg;
+;hp_desktop_envy;/1200Wx1200H/hp_desktop_envy.jpg,/515Wx515H/hp_desktop_envy.jpg,/300Wx300H/hp_desktop_envy.jpg,/96Wx96H/hp_desktop_envy.jpg,/65Wx65H/hp_desktop_envy.jpg,/30Wx30H/hp_desktop_envy.jpg;
+;hp_envy;/1200Wx1200H/hp_envy.jpg,/515Wx515H/hp_envy.jpg,/300Wx300H/hp_envy.jpg,/96Wx96H/hp_envy.jpg,/65Wx65H/hp_envy.jpg,/30Wx30H/hp_envy.jpg;
+;hp_webcam_w500;/1200Wx1200H/hp_webcam_w500.jpg,/515Wx515H/hp_webcam_w500.jpg,/300Wx300H/hp_webcam_w500.jpg,/96Wx96H/hp_webcam_w500.jpg,/65Wx65H/hp_webcam_w500.jpg,/30Wx30H/hp_webcam_w500.jpg;
+;hp_zbook;/1200Wx1200H/hp_zbook.jpg,/515Wx515H/hp_zbook.jpg,/300Wx300H/hp_zbook.jpg,/96Wx96H/hp_zbook.jpg,/65Wx65H/hp_zbook.jpg,/30Wx30H/hp_zbook.jpg;
+;jbl_headphone;/1200Wx1200H/jbl_headphone.jpg,/515Wx515H/jbl_headphone.jpg,/300Wx300H/jbl_headphone.jpg,/96Wx96H/jbl_headphone.jpg,/65Wx65H/jbl_headphone.jpg,/30Wx30H/jbl_headphone.jpg;
+;lenovo_desktop_aio;/1200Wx1200H/lenovo_desktop_aio.jpg,/515Wx515H/lenovo_desktop_aio.jpg,/300Wx300H/lenovo_desktop_aio.jpg,/96Wx96H/lenovo_desktop_aio.jpg,/65Wx65H/lenovo_desktop_aio.jpg,/30Wx30H/lenovo_desktop_aio.jpg;
+;lenovo_legion;/1200Wx1200H/lenovo_legion.jpg,/515Wx515H/lenovo_legion.jpg,/300Wx300H/lenovo_legion.jpg,/96Wx96H/lenovo_legion.jpg,/65Wx65H/lenovo_legion.jpg,/30Wx30H/lenovo_legion.jpg;
+;lenovo_webcam_net;/1200Wx1200H/lenovo_webcam_net.jpeg,/515Wx515H/lenovo_webcam_net.jpeg,/300Wx300H/lenovo_webcam_net.jpeg,/96Wx96H/lenovo_webcam_net.jpeg,/65Wx65H/lenovo_webcam_net.jpeg,/30Wx30H/lenovo_webcam_net.jpeg;
+;lenovo_yoga9;/1200Wx1200H/lenovo_yoga9.jpg,/515Wx515H/lenovo_yoga9.jpg,/300Wx300H/lenovo_yoga9.jpg,/96Wx96H/lenovo_yoga9.jpg,/65Wx65H/lenovo_yoga9.jpg,/30Wx30H/lenovo_yoga9.jpg;
+;macbook_air;/1200Wx1200H/macbook_air.jpg,/515Wx515H/macbook_air.jpg,/300Wx300H/macbook_air.jpg,/96Wx96H/macbook_air.jpg,/65Wx65H/macbook_air.jpg,/30Wx30H/macbook_air.jpg;
+;macbook_pro;/1200Wx1200H/macbook_pro.jpg,/515Wx515H/macbook_pro.jpg,/300Wx300H/macbook_pro.jpg,/96Wx96H/macbook_pro.jpg,/65Wx65H/macbook_pro.jpg,/30Wx30H/macbook_pro.jpg;
+;protronics_adapter;/1200Wx1200H/protronics_adapter.jpg,/515Wx515H/protronics_adapter.jpg,/300Wx300H/protronics_adapter.jpg,/96Wx96H/protronics_adapter.jpg,/65Wx65H/protronics_adapter.jpg,/30Wx30H/protronics_adapter.jpg;
+;ptrotronics_mouse_tode;/1200Wx1200H/protronics_mouse_tode.jpg,/515Wx515H/protronics_mouse_tode.jpg,/300Wx300H/protronics_mouse_tode.jpg,/96Wx96H/protronics_mouse_tode.jpg,/65Wx65H/protronics_mouse_tode.jpg,/30Wx30H/protronics_mouse_tode.jpg;
+;razer_mouse;/1200Wx1200H/razer_mouse.jpg,/515Wx515H/razer_mouse.jpg,/300Wx300H/razer_mouse.jpg,/96Wx96H/razer_mouse.jpg,/65Wx65H/razer_mouse.jpg,/30Wx30H/razer_mouse.jpg;
+;samsung_odyssey;/1200Wx1200H/samsung_odyssey.jpg,/515Wx515H/samsung_odyssey.jpg,/300Wx300H/samsung_odyssey.jpg,/96Wx96H/samsung_odyssey.jpg,/65Wx65H/samsung_odyssey.jpg,/30Wx30H/samsung_odyssey.jpg;
+;sony_headphone;/1200Wx1200H/sony_headphone.jpg,/515Wx515H/sony_headphone.jpg,/300Wx300H/sony_headphone.jpg,/96Wx96H/sony_headphone.jpg,/65Wx65H/sony_headphone.jpg,/30Wx30H/sony_headphone.jpg;
+
+
+INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+;200001;/300Wx300H/macbook_air.jpg;/96Wx96H/macbook_air.jpg;/1200Wx1200H/macbook_air.jpg;/515Wx515H/macbook_air.jpg,/65Wx65H/macbook_air.jpg,/30Wx30H/macbook_air.jpg;/300Wx300H/macbook_air.jpg;/96Wx96H/macbook_air.jpg;macbook_air;
+;200002;/300Wx300H/macbook_pro.jpg;/96Wx96H/macbook_pro.jpg;/1200Wx1200H/macbook_pro.jpg;/515Wx515H/macbook_pro.jpg,/65Wx65H/macbook_pro.jpg,/30Wx30H/macbook_pro.jpg;/300Wx300H/macbook_pro.jpg;/96Wx96H/macbook_pro.jpg;macbook_pro;
+;200003;/300Wx300H/galaxy_book4.jpg;/96Wx96H/galaxy_book4.jpg;/1200Wx1200H/galaxy_book4.jpg;/515Wx515H/galaxy_book4.jpg,/65Wx65H/galaxy_book4.jpg,/30Wx30H/galaxy_book4.jpg;/300Wx300H/galaxy_book4.jpg;/96Wx96H/galaxy_book4.jpg;galaxy_book4;
+;200004;/300Wx300H/galaxy_book3.jpg;/96Wx96H/galaxy_book3.jpg;/1200Wx1200H/galaxy_book3.jpg;/515Wx515H/galaxy_book3.jpg,/65Wx65H/galaxy_book3.jpg,/30Wx30H/galaxy_book3.jpg;/300Wx300H/galaxy_book3.jpg;/96Wx96H/galaxy_book3.jpg;galaxy_book3;
+;200005;/300Wx300H/hp_zbook.jpg;/96Wx96H/hp_zbook.jpg;/1200Wx1200H/hp_zbook.jpg;/515Wx515H/hp_zbook.jpg,/65Wx65H/hp_zbook.jpg,/30Wx30H/hp_zbook.jpg;/300Wx300H/hp_zbook.jpg;/96Wx96H/hp_zbook.jpg;hp_zbook;
+;200006;/300Wx300H/hp_envy.jpg;/96Wx96H/hp_envy.jpg;/1200Wx1200H/hp_envy.jpg;/515Wx515H/hp_envy.jpg,/65Wx65H/hp_envy.jpg,/30Wx30H/hp_envy.jpg;/300Wx300H/hp_envy.jpg;/96Wx96H/hp_envy.jpg;hp_envy;
+;200007;/300Wx300H/dell_alienware.jpg;/96Wx96H/dell_alienware.jpg;/1200Wx1200H/dell_alienware.jpg;/515Wx515H/dell_alienware.jpg,/65Wx65H/dell_alienware.jpg,/30Wx30H/dell_alienware.jpg;/300Wx300H/dell_alienware.jpg;/96Wx96H/dell_alienware.jpg;dell_alienware;
+;200008;/300Wx300H/dell_xps.jpg;/96Wx96H/dell_xps.jpg;/1200Wx1200H/dell_xps.jpg;/515Wx515H/dell_xps.jpg,/65Wx65H/dell_xps.jpg,/30Wx30H/dell_xps.jpg;/300Wx300H/dell_xps.jpg;/96Wx96H/dell_xps.jpg;dell_xps;
+;200009;/300Wx300H/asus_rog_zephyrus.jpg;/96Wx96H/asus_rog_zephyrus.jpg;/1200Wx1200H/asus_rog_zephyrus.jpg;/515Wx515H/asus_rog_zephyrus.jpg,/65Wx65H/asus_rog_zephyrus.jpg,/30Wx30H/asus_rog_zephyrus.jpg;/300Wx300H/asus_rog_zephyrus.jpg;/96Wx96H/asus_rog_zephyrus.jpg;asus_rog_zephyrus;
+;200010;/300Wx300H/asus_rog_strixscar.jpg;/96Wx96H/asus_rog_strixscar.jpg;/1200Wx1200H/asus_rog_strixscar.jpg;/515Wx515H/asus_rog_strixscar.jpg,/65Wx65H/asus_rog_strixscar.jpg,/30Wx30H/asus_rog_strixscar.jpg;/300Wx300H/asus_rog_strixscar.jpg;/96Wx96H/asus_rog_strixscar.jpg;asus_rog_strixscar;
+;200011;/300Wx300H/lenovo_legion.jpg;/96Wx96H/lenovo_legion.jpg;/1200Wx1200H/lenovo_legion.jpg;/515Wx515H/lenovo_legion.jpg,/65Wx65H/lenovo_legion.jpg,/30Wx30H/lenovo_legion.jpg;/300Wx300H/lenovo_legion.jpg;/96Wx96H/lenovo_legion.jpg;lenovo_legion;
+;200012;/300Wx300H/lenovo_yoga9.jpg;/96Wx96H/lenovo_yoga9.jpg;/1200Wx1200H/lenovo_yoga9.jpg;/515Wx515H/lenovo_yoga9.jpg,/65Wx65H/lenovo_yoga9.jpg,/30Wx30H/lenovo_yoga9.jpg;/300Wx300H/lenovo_yoga9.jpg;/96Wx96H/lenovo_yoga9.jpg;lenovo_yoga9;
+;200013;/300Wx300H/acer_predator.jpg;/96Wx96H/acer_predator.jpg;/1200Wx1200H/acer_predator.jpg;/515Wx515H/acer_predator.jpg,/65Wx65H/acer_predator.jpg,/30Wx30H/acer_predator.jpg;/300Wx300H/acer_predator.jpg;/96Wx96H/acer_predator.jpg;acer_predator;
+;200014;/300Wx300H/acer_travelmate.jpg;/96Wx96H/acer_travelmate.jpg;/1200Wx1200H/acer_travelmate.jpg;/515Wx515H/acer_travelmate.jpg,/65Wx65H/acer_travelmate.jpg,/30Wx30H/acer_travelmate.jpg;/300Wx300H/acer_travelmate.jpg;/96Wx96H/acer_travelmate.jpg;acer_travelmate;
+;200015;/300Wx300H/dell_desktop_all_in_one.jpg;/96Wx96H/dell_desktop_all_in_one.jpg;/1200Wx1200H/dell_desktop_all_in_one.jpg;/515Wx515H/dell_desktop_all_in_one.jpg,/65Wx65H/dell_desktop_all_in_one.jpg,/30Wx30H/dell_desktop_all_in_one.jpg;/300Wx300H/dell_desktop_all_in_one.jpg;/96Wx96H/dell_desktop_all_in_one.jpg;dell_desktop_all_in_one;
+;200016;/300Wx300H/dell_desktop_aio.jpg;/96Wx96H/dell_desktop_aio.jpg;/1200Wx1200H/dell_desktop_aio.jpg;/515Wx515H/dell_desktop_aio.jpg,/65Wx65H/dell_desktop_aio.jpg,/30Wx30H/dell_desktop_aio.jpg;/300Wx300H/dell_desktop_aio.jpg;/96Wx96H/dell_desktop_aio.jpg;dell_desktop_aio;
+;200017;/300Wx300H/asus_desktop_aio.jpg;/96Wx96H/asus_desktop_aio.jpg;/1200Wx1200H/asus_desktop_aio.jpg;/515Wx515H/asus_desktop_aio.jpg,/65Wx65H/asus_desktop_aio.jpg,/30Wx30H/asus_desktop_aio.jpg;/300Wx300H/asus_desktop_aio.jpg;/96Wx96H/asus_desktop_aio.jpg;asus_desktop_aio;
+;200018;/300Wx300H/asus_desktop_aioA5.jpg;/96Wx96H/asus_desktop_aioA5.jpg;/1200Wx1200H/asus_desktop_aioA5.jpg;/515Wx515H/asus_desktop_aioA5.jpg,/65Wx65H/asus_desktop_aioA5.jpg,/30Wx30H/asus_desktop_aioA5.jpg;/300Wx300H/asus_desktop_aioA5.jpg;/96Wx96H/asus_desktop_aioA5.jpg;asus_desktop_aioA5;
+;200019;/300Wx300H/lenovo_desktop_aio.jpg;/96Wx96H/lenovo_desktop_aio.jpg;/1200Wx1200H/lenovo_desktop_aio.jpg;/515Wx515H/lenovo_desktop_aio.jpg,/65Wx65H/lenovo_desktop_aio.jpg,/30Wx30H/lenovo_desktop_aio.jpg;/300Wx300H/lenovo_desktop_aio.jpg;/96Wx96H/lenovo_desktop_aio.jpg;lenovo_desktop_aio;
+;200020;/300Wx300H/hp_desktop_envy.jpg;/96Wx96H/hp_desktop_envy.jpg;/1200Wx1200H/hp_desktop_envy.jpg;/515Wx515H/hp_desktop_envy.jpg,/65Wx65H/hp_desktop_envy.jpg,/30Wx30H/hp_desktop_envy.jpg;/300Wx300H/hp_desktop_envy.jpg;/96Wx96H/hp_desktop_envy.jpg;hp_desktop_envy;
+;200021;/300Wx300H/hp_desktop_all_in_one.jpg;/96Wx96H/hp_desktop_all_in_one.jpg;/1200Wx1200H/hp_desktop_all_in_one.jpg;/515Wx515H/hp_desktop_all_in_one.jpg,/65Wx65H/hp_desktop_all_in_one.jpg,/30Wx30H/hp_desktop_all_in_one.jpg;/300Wx300H/hp_desktop_all_in_one.jpg;/96Wx96H/hp_desktop_all_in_one.jpg;hp_desktop_all_in_one;
+;200022;/300Wx300H/razer_mouse.jpg;/96Wx96H/razer_mouse.jpg;/1200Wx1200H/razer_mouse.jpg;/515Wx515H/razer_mouse.jpg,/65Wx65H/razer_mouse.jpg,/30Wx30H/razer_mouse.jpg;/300Wx300H/razer_mouse.jpg;/96Wx96H/razer_mouse.jpg;razer_mouse;
+;200023;/300Wx300H/protronics_mouse_tode.jpg;/96Wx96H/protronics_mouse_tode.jpg;/1200Wx1200H/protronics_mouse_tode.jpg;/515Wx515H/protronics_mouse_tode.jpg,/65Wx65H/protronics_mouse_tode.jpg,/30Wx30H/protronics_mouse_tode.jpg;/300Wx300H/protronics_mouse_tode.jpg;/96Wx96H/protronics_mouse_tode.jpg;ptrotronics_mouse_tode;
+;200024;/300Wx300H/dell_keyboard.jpg;/96Wx96H/dell_keyboard.jpg;/1200Wx1200H/dell_keyboard.jpg;/515Wx515H/dell_keyboard.jpg,/65Wx65H/dell_keyboard.jpg,/30Wx30H/dell_keyboard.jpg;/300Wx300H/dell_keyboard.jpg;/96Wx96H/dell_keyboard.jpg;dell_keyboard;
+;200025;/300Wx300H/apple_keyboard.jpg;/96Wx96H/apple_keyboard.jpg;/1200Wx1200H/apple_keyboard.jpg;/515Wx515H/apple_keyboard.jpg,/65Wx65H/apple_keyboard.jpg,/30Wx30H/apple_keyboard.jpg;/300Wx300H/apple_keyboard.jpg;/96Wx96H/apple_keyboard.jpg;apple_keyboard;
+;200026;/300Wx300H/asus_keyboard.jpg;/96Wx96H/asus_keyboard.jpg;/1200Wx1200H/asus_keyboard.jpg;/515Wx515H/asus_keyboard.jpg,/65Wx65H/asus_keyboard.jpg,/30Wx30H/asus_keyboard.jpg;/300Wx300H/asus_keyboard.jpg;/96Wx96H/asus_keyboard.jpg;asus_keyboard;
+;200027;/300Wx300H/protronics_adapter.jpg;/96Wx96H/protronics_adapter.jpg;/1200Wx1200H/protronics_adapter.jpg;/515Wx515H/protronics_adapter.jpg,/65Wx65H/protronics_adapter.jpg,/30Wx30H/protronics_adapter.jpg;/300Wx300H/protronics_adapter.jpg;/96Wx96H/protronics_adapter.jpg;protronics_adapter;
+;200028;/300Wx300H/dell_adapter.jpg;/96Wx96H/dell_adapter.jpg;/1200Wx1200H/dell_adapter.jpg;/515Wx515H/dell_adapter.jpg,/65Wx65H/dell_adapter.jpg,/30Wx30H/dell_adapter.jpg;/300Wx300H/dell_adapter.jpg;/96Wx96H/dell_adapter.jpg;dell_adapter;
+;200029;/300Wx300H/sony_headphone.jpg;/96Wx96H/sony_headphone.jpg;/1200Wx1200H/sony_headphone.jpg;/515Wx515H/sony_headphone.jpg,/65Wx65H/sony_headphone.jpg,/30Wx30H/sony_headphone.jpg;/300Wx300H/sony_headphone.jpg;/96Wx96H/sony_headphone.jpg;sony_headphone;
+;200030;/300Wx300H/jbl_headphone.jpg;/96Wx96H/jbl_headphone.jpg;/1200Wx1200H/jbl_headphone.jpg;/515Wx515H/jbl_headphone.jpg,/65Wx65H/jbl_headphone.jpg,/30Wx30H/jbl_headphone.jpg;/300Wx300H/jbl_headphone.jpg;/96Wx96H/jbl_headphone.jpg;jbl_headphone;
+;200031;/300Wx300H/apple_charger.jpg;/96Wx96H/apple_charger.jpg;/1200Wx1200H/apple_charger.jpg;/515Wx515H/apple_charger.jpg,/65Wx65H/apple_charger.jpg,/30Wx30H/apple_charger.jpg;/300Wx300H/apple_charger.jpg;/96Wx96H/apple_charger.jpg;apple_charger;
+;200032;/300Wx300H/hp_charger.jpg;/96Wx96H/hp_charger.jpg;/1200Wx1200H/hp_charger.jpg;/515Wx515H/hp_charger.jpg,/65Wx65H/hp_charger.jpg,/30Wx30H/hp_charger.jpg;/300Wx300H/hp_charger.jpg;/96Wx96H/hp_charger.jpg;hp_charger;
+;200033;/300Wx300H/asus_charger.jpeg;/96Wx96H/asus_charger.jpeg;/1200Wx1200H/asus_charger.jpeg;/515Wx515H/asus_charger.jpeg,/65Wx65H/asus_charger.jpeg,/30Wx30H/asus_charger.jpeg;/300Wx300H/asus_charger.jpeg;/96Wx96H/asus_charger.jpeg;asus_charger;
+;200034;/300Wx300H/ambrane_charger.jpg;/96Wx96H/ambrane_charger.jpg;/1200Wx1200H/ambrane_charger.jpg;/515Wx515H/ambrane_charger.jpg,/65Wx65H/ambrane_charger.jpg,/30Wx30H/ambrane_charger.jpg;/300Wx300H/ambrane_charger.jpg;/96Wx96H/ambrane_charger.jpg;ambrane_charger;
+;200035;/300Wx300H/samsung_odyssey.jpg;/96Wx96H/samsung_odyssey.jpg;/1200Wx1200H/samsung_odyssey.jpg;/515Wx515H/samsung_odyssey.jpg,/65Wx65H/samsung_odyssey.jpg,/30Wx30H/samsung_odyssey.jpg;/300Wx300H/samsung_odyssey.jpg;/96Wx96H/samsung_odyssey.jpg;samsung_odyssey;
+;200036;/300Wx300H/apple_pro_display.jpg;/96Wx96H/apple_pro_display.jpg;/1200Wx1200H/apple_pro_display.jpg;/515Wx515H/apple_pro_display.jpg,/65Wx65H/apple_pro_display.jpg,/30Wx30H/apple_pro_display.jpg;/300Wx300H/apple_pro_display.jpg;/96Wx96H/apple_pro_display.jpg;apple_pro_display;
+;200037;/300Wx300H/dell_ultrasharp.jpg;/96Wx96H/dell_ultrasharp.jpg;/1200Wx1200H/dell_ultrasharp.jpg;/515Wx515H/dell_ultrasharp.jpg,/65Wx65H/dell_ultrasharp.jpg,/30Wx30H/dell_ultrasharp.jpg;/300Wx300H/dell_ultrasharp.jpg;/96Wx96H/dell_ultrasharp.jpg;dell_ultrasharp;
+;200038;/300Wx300H/asus_webcam.jpg;/96Wx96H/asus_webcam.jpg;/1200Wx1200H/asus_webcam.jpg;/515Wx515H/asus_webcam.jpg,/65Wx65H/asus_webcam.jpg,/30Wx30H/asus_webcam.jpg;/300Wx300H/asus_webcam.jpg;/96Wx96H/asus_webcam.jpg;asus_webcam;
+;200039;/300Wx300H/lenovo_webcam_net.jpeg;/96Wx96H/lenovo_webcam_net.jpeg;/1200Wx1200H/lenovo_webcam_net.jpeg;/515Wx515H/lenovo_webcam_net.jpeg,/65Wx65H/lenovo_webcam_net.jpeg,/30Wx30H/lenovo_webcam_net.jpeg;/300Wx300H/lenovo_webcam_net.jpeg;/96Wx96H/lenovo_webcam_net.jpeg;lenovo_webcam_net;
+;200040;/300Wx300H/hp_webcam_w500.jpg;/96Wx96H/hp_webcam_w500.jpg;/1200Wx1200H/hp_webcam_w500.jpg;/515Wx515H/hp_webcam_w500.jpg,/65Wx65H/hp_webcam_w500.jpg,/30Wx30H/hp_webcam_w500.jpg;/300Wx300H/hp_webcam_w500.jpg;/96Wx96H/hp_webcam_w500.jpg;hp_webcam_w500;

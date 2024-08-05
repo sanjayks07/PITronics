@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# Language
+$lang = en
+
+# B2BUnit
+UPDATE B2BUnit; uid[unique = true]; locname[lang = $lang]
+              ; PITS     ; PITS
+
+UPDATE B2BCostCenter; code[unique = true]; name[lang = $lang]
+                    ; PITS      ; PITS
+
+UPDATE B2BBudget; code[unique = true]; name[lang = $lang]
+                ; 350K_INR_MONTH      ; 350K INR/MONTH
+                ; 250K_INR_MONTH      ; 250K INR/MONTH
+

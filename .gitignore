@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Generated Hybris files
+build.xml
+extensioninfo.xsd
+beans.xsd
+items.xsd
+platformhome.properties
+wro_addons.xml
+*_bof.jar
+**/resources/backoffice/*.jar
+*-testclasses.xml
+*-webtestclasses.xml
+
+# Generated classes
+*.class
+classes/
+testclasses/
+gensrc/
+addonsrc/
+addontestsrc/
+commonwebsrc/
+eclipsebin/
+
+# Hybris Extensions & Folders
+/hybris/bin/*
+!/hybris/bin/custom/
+hybris/data/
+hybris/log/
+hybris/temp/

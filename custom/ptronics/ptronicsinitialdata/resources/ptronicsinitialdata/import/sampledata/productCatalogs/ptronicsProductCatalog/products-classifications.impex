@@ -1,0 +1,71 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Product Classifications into PTronics Store
+
+# Common (across all languages) data starts here
+
+#% impex.setLocale(Locale.ENGLISH);
+
+# Macros / Replacement Parameter definitions
+$productCatalog = ptronicsProductCatalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$clAttrModifiers = system = 'PTronicsClassification', version = '1.0', translator = de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator, lang = EN
+
+# Insert Product Classifications
+
+# Classification: Energy Management
+$feature1 = @inputPower[$clAttrModifiers];  # Source data-sheet
+INSERT_UPDATE Product; code[unique = true]; $feature1; $catalogVersion
+                     ; 200031             ; 45       ;
+                     ; 200032             ; 65       ;
+                     ; 200033             ; 45       ;
+                     ; 200034             ; 65       ;
+
+# Classification: Software Details
+$feature1 = @os[$clAttrModifiers];  # Source data-sheet
+INSERT_UPDATE Product; code[unique = true]; $feature1    ; $catalogVersion
+                     ; 200001             ; macOS Sonoma ;
+                     ; 200002             ; macOS Sonoma ;
+                     ; 200003             ; Windows 11   ;
+                     ; 200004             ; Windows 11   ;
+                     ; 200005             ; Windows 11   ;
+                     ; 200006             ; Windows 11   ;
+                     ; 200007             ; Windows 11   ;
+                     ; 200008             ; Windows 11   ;
+                     ; 200009             ; Windows 11   ;
+                     ; 200010             ; Windows 11   ;
+                     ; 200011             ; Windows 11   ;
+                     ; 200012             ; Windows 11   ;
+                     ; 200013             ; Windows 11   ;
+                     ; 200014             ; Windows 11   ;
+                     ; 200015             ; Windows 11   ;
+                     ; 200016             ; Windows 11   ;
+                     ; 200017             ; Windows 11   ;
+                     ; 200018             ; Windows 11   ;
+                     ; 200019             ; Windows 11   ;
+                     ; 200020             ; Windows 11   ;
+                     ; 200021             ; Windows 11   ;
+
+# Classification: Cable Assortment
+$feature1 = @cableType[$clAttrModifiers];  # Source data-sheet
+INSERT_UPDATE Product; code[unique = true]; $feature1              ; $catalogVersion
+                     ; 200022             ; USB                    ;
+                     ; 200023             ; Bluetooth              ;
+                     ; 200024             ; Bluetooth              ;
+                     ; 200025             ; Bluetooth              ;
+                     ; 200026             ; USB                    ;
+                     ; 200027             ; USB C                  ;
+                     ; 200028             ; USB                    ;
+                     ; 200029             ; Bluetooth              ;
+                     ; 200030             ; Bluetooth              ;
+                     ; 200031             ; USB C                  ;
+                     ; 200032             ; USB C                  ;
+                     ; 200033             ; Round Tip 4 Mm X 1.2Mm ;
+                     ; 200034             ; USB C                  ;
+                     ; 200035             ; USB                    ;
+                     ; 200036             ; USB                    ;
+                     ; 200037             ; USB                    ;
+                     ; 200038             ; USB                    ;
+                     ; 200039             ; USB                    ;
+                     ; 200040             ; USB                    ;

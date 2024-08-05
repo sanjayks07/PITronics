@@ -1,0 +1,61 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories into PTronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog = ptronicsProductCatalog
+$productCatalogName = PTronics Product Catalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$supercategories = source(code, $catalogVersion)[unique = true]
+$categories = target(code, $catalogVersion)[unique = true]
+
+
+# Insert Categories
+INSERT_UPDATE Category; code[unique = true]; allowedPrincipals(uid)[default = 'customergroup']; $catalogVersion
+                      ; 1                  ;                                                  ;
+                      ; laptop             ;                                                  ;
+                      ; display            ;                                                  ;
+                      ; desktop            ;                                                  ;
+                      ; accessories        ;                                                  ;
+                      ; businessLaptop     ;                                                  ;
+                      ; gamingLaptop       ;                                                  ;
+                      ; businessDesktop    ;                                                  ;
+                      ; gamingDesktop      ;                                                  ;
+                      ; mouse              ;                                                  ;
+                      ; keyboard           ;                                                  ;
+                      ; adapter            ;                                                  ;
+                      ; headphone          ;                                                  ;
+                      ; charger            ;                                                  ;
+                      ; webcam             ;                                                  ;
+                      ; wiredMouse         ;                                                  ;
+                      ; wirelessMouse      ;                                                  ;
+                      ; wiredKeyboard      ;                                                  ;
+                      ; wirelessKeyboard   ;                                                  ;
+                      ; wiredWebcam        ;                                                  ;
+                      ; wirelessWebcam     ;                                                  ;
+                      ; gaming             ;                                                  ;
+
+# Insert Category Structure
+INSERT_UPDATE CategoryCategoryRelation; $categories      ; $supercategories
+                                      ; laptop           ; 1
+                                      ; businessLaptop   ; laptop
+                                      ; gamingLaptop     ; laptop
+                                      ; gamingLaptop     ; gaming
+                                      ; display          ; 1
+                                      ; desktop          ; 1
+                                      ; businessDesktop  ; desktop
+                                      ; gamingDesktop    ; desktop
+                                      ; gamingDesktop    ; gaming
+                                      ; accessories      ; 1
+                                      ; mouse            ; accessories
+                                      ; keyboard         ; accessories
+                                      ; adapter          ; accessories
+                                      ; headphone        ; accessories
+                                      ; charger          ; accessories
+                                      ; webcam           ; accessories
+                                      ; wiredMouse       ; mouse
+                                      ; wirelessMouse    ; mouse
+                                      ; wiredKeyboard    ; keyboard
+                                      ; wirelessKeyboard ; keyboard
+

@@ -1,0 +1,78 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing PTronics Store Prices
+#% impex.setLocale( Locale.GERMAN );
+
+$productCatalog = ptronicsProductCatalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = '$productCatalog:Staged']
+$prices = Europe1prices[translator = de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup = Europe1PriceFactory_PTG(code)[default = in-service-tax]
+
+# Set product approval status to Approved only for those products that have prices.
+$approved = approvalstatus(code)[default = 'approved']
+
+UPDATE Product; code[unique = true]; $prices                                                                                                                 ; $approved; $catalogVersion; $taxGroup
+              ; 200001             ; 1 pieces = 114900 INR N                                                                                                 ;          ;                ;
+              ; 200002             ; 1 pieces = 249900 INR N , 10 pieces = 240000 INR N, 30 pieces = 235000 INR N                                            ;          ;                ;
+              ; 200003             ; 1 pieces = 138990 INR N                                                                                                 ;          ;                ;
+              ; 200004             ; 1 pieces = 113891 INR N                                                                                                 ;          ;                ;
+              ; 200005             ; 1 pieces = 390914 INR N                                                                                                 ;          ;                ;
+              ; 200006             ; 1 pieces = 121000 INR N                                                                                                 ;          ;                ;
+              ; 200007             ; 1 pieces = 453990 INR N                                                                                                 ;          ;                ;
+              ; 200008             ; 1 pieces = 191999 INR N                                                                                                 ;          ;                ;
+              ; 200009             ; 1 pieces = 383990 INR N                                                                                                 ;          ;                ;
+              ; 200010             ; 1 pieces = 236990 INR N                                                                                                 ;          ;                ;
+              ; 200011             ; 1 pieces = 413928 INR N                                                                                                 ;          ;                ;
+              ; 200012             ; 1 pieces = 171665 INR N                                                                                                 ;          ;                ;
+              ; 200013             ; 1 pieces = 393990 INR N                                                                                                 ;          ;                ;
+              ; 200014             ; 1 pieces = 43990 INR N                                                                                                  ;          ;                ;
+              ; 200015             ; 1 pieces = 55490 INR N                                                                                                  ;          ;                ;
+              ; 200016             ; 1 pieces = 148400 INR N                                                                                                 ;          ;                ;
+              ; 200017             ; 1 pieces = 61430 INR N                                                                                                  ;          ;                ;
+              ; 200018             ; 1 pieces = 92990 INR N                                                                                                  ;          ;                ;
+              ; 200019             ; 1 pieces = 38299 INR N                                                                                                  ;          ;                ;
+              ; 200020             ; 1 pieces = 199990 INR N                                                                                                 ;          ;                ;
+              ; 200021             ; 1 pieces = 57990 INR N                                                                                                  ;          ;                ;
+              ; 200022             ; 1 pieces = 2999 INR N,10 pieces = 2995 INR N, 30 pieces = 2990 INR N, 50 pieces = 2950 INR N                            ;          ;                ;
+              ; 200023             ; 1 pieces = 598 INR N, 10 pieces = 585 INR N, 30 pieces = 580 INR N, 50 pieces = 570 INR N, 100 pieces = 550 INR N       ;          ;                ;
+              ; 200024             ; 1 pieces = 4719 INR N , 10 pieces = 4710 INR N, 30 pieces = 4700 INR N, 50 pieces = 4680 INR N, 100 pieces = 4650 INR N ;          ;                ;
+              ; 200025             ; 1 pieces = 17500 INR N                                                                                                  ;          ;                ;
+              ; 200026             ; 1 pieces = 8000 INR N                                                                                                   ;          ;                ;
+              ; 200027             ; 1 pieces = 2998 INR N , 10 pieces = 2990 INR N, 30 pieces = 2980 INR N, 50 pieces = 2970 INR N, 100 pieces = 2900 INR N ;          ;                ;
+              ; 200028             ; 1 pieces = 1998 INR N , 10 pieces = 1990 INR N, 30 pieces = 1980 INR N, 50 pieces = 1950 INR N, 100 pieces = 1900 INR N ;          ;                ;
+              ; 200029             ; 1 pieces = 21990 INR N                                                                                                  ;          ;                ;
+              ; 200030             ; 1 pieces = 6499 INR N , 10 pieces = 6490 INR N, 30 pieces = 6480 INR N, 50 pieces = 6450 INR N, 100 pieces = 6400 INR N ;          ;                ;
+              ; 200031             ; 1 pieces = 7500 INR N , 10 pieces = 7490 INR N, 30 pieces = 7480 INR N, 50 pieces = 7450 INR N, 100 pieces = 7400 INR N ;          ;                ;
+              ; 200032             ; 1 pieces = 930 INR N, 10 pieces = 928 INR N, 30 pieces = 925 INR N, 50 pieces = 920 INR N, 100 pieces = 900 INR N       ;          ;                ;
+              ; 200033             ; 1 pieces = 1804 INR N, 10 pieces = 1800 INR N, 30 pieces = 1795 INR N, 50 pieces = 1790 INR N, 100 pieces = 1760 INR N  ;          ;                ;
+              ; 200034             ; 1 pieces = 1999 INR N, 10 pieces = 1995 INR N, 30 pieces = 1990 INR N, 50 pieces = 1985 INR N, 100 pieces = 1970 INR N  ;          ;                ;
+              ; 200035             ; 1 pieces = 259999 INR N                                                                                                 ;          ;                ;
+              ; 200036             ; 1 pieces = 449900 INR N                                                                                                 ;          ;                ;
+              ; 200037             ; 1 pieces = 47199 INR N                                                                                                  ;          ;                ;
+              ; 200038             ; 1 pieces = 9258 INR N,30 pieces = 9250 INR N, 50 pieces = 9240 INR N, 100 pieces = 9200 INR N                           ;          ;                ;
+              ; 200039             ; 1 pieces = 2490 INR N, 10 pieces = 2485 INR N, 30 pieces = 2470 INR N, 50 pieces = 2460 INR N, 100 pieces = 2400 INR N  ;          ;                ;
+              ; 200040             ; 1 pieces = 9552 INR N, 50 pieces = 9500 INR N, 100 pieces = 9000 INR N                                                  ;          ;                ;
+
+INSERT_UPDATE UserPriceGroup; code[unique = true]; name[lang = en]
+                            ; PITS_PRICES        ; PITS PRICING
+                            ; PITS_SAP_PRICES    ; PITS SAP PRICING
+
+##############################################################################
+# Create price rows and associate them to user price groups.
+##############################################################################
+INSERT_UPDATE PriceRow; product(code, catalogVersion(catalog(id), version))[unique = true]; ug(code)[unique = true]; currency(isocode)[unique = true]; price[unique = true]; $catalogVersion        ; minqtd; net[default = true, virtual = true]; unit(code)[default = pieces, virtual = true]
+                      ; 200001:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 113000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200001:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 112500              ; $productCatalog:Staged ; 10    ;                                    ;
+                      ; 200001:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 110000              ; $productCatalog:Staged ; 25    ;                                    ;
+                      ; 200001:$productCatalog:Staged                                     ; PITS_SAP_PRICES        ; INR                             ; 112000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200001:$productCatalog:Staged                                     ; PITS_SAP_PRICES        ; INR                             ; 110000              ; $productCatalog:Staged ; 10    ;                                    ;
+                      ; 200002:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 240000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200005:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 380000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200007:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 450000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200009:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 370000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200010:$productCatalog:Staged                                     ; PITS_SAP_PRICES        ; INR                             ; 230000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200011:$productCatalog:Staged                                     ; PITS_SAP_PRICES        ; INR                             ; 400000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200011:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 410000              ; $productCatalog:Staged ; 1     ;                                    ;
+                      ; 200013:$productCatalog:Staged                                     ; PITS_PRICES            ; INR                             ; 390000              ; $productCatalog:Staged ; 1     ;                                    ;
+

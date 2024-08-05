@@ -1,0 +1,40 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# 
+# Create the PTronics BaseStore
+#
+
+$productCatalog = ptronicsProductCatalog
+$classificationCatalog = PTronicsClassification
+$currencies = INR
+$net = true
+$storeUid = ptronics
+$defaultCurrency = INR
+$languages = en
+$defaultLanguage = en
+$asianCountries = IN
+$deliveryCountries = $asianCountries
+$billingCountries = $asianCountries
+$orderProcessCode = order-process
+$pickupInStoreMode = DISABLED
+$customerAllowedToIgnoreSuggestions = true
+$paymentProvider = Mockup
+$expressCheckoutEnabled = false
+$checkoutGroup = b2bCheckoutGroup
+$returnProcessCode = return-process
+
+INSERT_UPDATE PromotionGroup; Identifier[unique = true]
+                            ; ptronicsPromoGrp
+
+# Base Store
+INSERT_UPDATE BaseStore; uid[unique = true]; catalogs(id)                           ; currencies(isocode); net  ; taxGroup(code); storelocatorDistanceUnit(code); defaultCurrency(isocode); languages(isocode); defaultLanguage(isocode); deliveryCountries(isocode); billingCountries(isocode); submitOrderProcessCode; paymentProvider  ; pickupInStoreMode(code); customerAllowedToIgnoreSuggestions  ; expressCheckoutEnabled  ; maxRadiusForPoSSearch; checkoutFlowGroup; createReturnProcessCode;
+                       ; $storeUid         ; $productCatalog,$classificationCatalog ; $currencies        ; $net ; in-taxes      ; miles                         ; $defaultCurrency        ; $languages        ; $defaultLanguage        ; $deliveryCountries        ; $billingCountries        ; $orderProcessCode     ; $paymentProvider ; $pickupInStoreMode     ; $customerAllowedToIgnoreSuggestions ; $expressCheckoutEnabled ; 300                  ; $checkoutGroup   ; $returnProcessCode     ;
+
+INSERT_UPDATE BaseStore2DeliveryModeRel; source(uid)[unique = true]; target(code)[unique = true]
+                                       ; ptronics                  ; premium-net
+                                       ; ptronics                  ; standard-net
+                                       ; ptronics                  ; premium-gross
+                                       ; ptronics                  ; standard-gross
+                                       ; ptronics                  ; free-standard-shipping
+

@@ -1,0 +1,103 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products stock levels into PTronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog = ptronicsProductCatalog
+$productCatalogName = PTronics Product Catalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$vendor = ptronics
+
+INSERT_UPDATE Warehouse; code[unique = true]; name[lang = en]
+                       ; pw_warehouse_s     ; PTronics Warehouse South
+                       ; pw_warehouse_e     ; PTronics Warehouse East
+                       ; pw_warehouse_w     ; PTronics Warehouse West
+                       ; pw_warehouse_n     ; PTronics Warehouse North
+
+INSERT_UPDATE StockLevel; productCode[unique = true]; warehouse(code)[unique = true, default = default]; available; inStockStatus(code); maxPreOrder[default = 1]; maxStockLevelHistoryCount[default = -1]; overSelling[default = 0]; preOrder[default = 0]; reserved[default = 0]
+                        ; 200001                    ; pw_warehouse_s                                   ; 414      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200002                    ; pw_warehouse_e                                   ; 228      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200003                    ; pw_warehouse_n                                   ; 335      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200004                    ; pw_warehouse_w                                   ; 161      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200005                    ; pw_warehouse_s                                   ; 215      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200006                    ; pw_warehouse_e                                   ; 122      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200007                    ; pw_warehouse_n                                   ; 496      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200008                    ; pw_warehouse_w                                   ; 241      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200009                    ; pw_warehouse_s                                   ; 386      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200010                    ; pw_warehouse_e                                   ; 410      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200011                    ; pw_warehouse_n                                   ; 305      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200012                    ; pw_warehouse_w                                   ; 331      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200013                    ; pw_warehouse_s                                   ; 425      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200014                    ; pw_warehouse_e                                   ; 309      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200015                    ; pw_warehouse_n                                   ; 192      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200016                    ; pw_warehouse_w                                   ; 366      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200017                    ; pw_warehouse_s                                   ; 261      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200018                    ; pw_warehouse_e                                   ; 3        ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200019                    ; pw_warehouse_n                                   ; 247      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200020                    ; pw_warehouse_w                                   ; 302      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200021                    ; pw_warehouse_s                                   ; 286      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200022                    ; pw_warehouse_e                                   ; 342      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200023                    ; pw_warehouse_n                                   ; 236      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200024                    ; pw_warehouse_w                                   ; 493      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200025                    ; pw_warehouse_s                                   ; 375      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200026                    ; pw_warehouse_e                                   ; 63       ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200027                    ; pw_warehouse_n                                   ; 223      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200028                    ; pw_warehouse_w                                   ; 421      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200029                    ; pw_warehouse_s                                   ; 256      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200030                    ; pw_warehouse_e                                   ; 479      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200031                    ; pw_warehouse_n                                   ; 14       ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200032                    ; pw_warehouse_w                                   ; 236      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200033                    ; pw_warehouse_s                                   ; 69       ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200034                    ; pw_warehouse_e                                   ; 48       ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200035                    ; pw_warehouse_n                                   ; 121      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200036                    ; pw_warehouse_w                                   ; 378      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200037                    ; pw_warehouse_s                                   ; 476      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200038                    ; pw_warehouse_e                                   ; 393      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200039                    ; pw_warehouse_n                                   ; 284      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+                        ; 200040                    ; pw_warehouse_w                                   ; 491      ; notSpecified       ;                         ;                                        ;                         ;                      ;
+
+
+
+
+INSERT_UPDATE Product; code[unique = true]; stockLevels(productCode, warehouse(code)); vendors(code)[default = $vendor]; $catalogVersion
+                     ; 200001             ; 200001:pw_warehouse_s                    ;                                 ;
+                     ; 200002             ; 200002:pw_warehouse_e                    ;                                 ;
+                     ; 200003             ; 200003:pw_warehouse_n                    ;                                 ;
+                     ; 200004             ; 200004:pw_warehouse_w                    ;                                 ;
+                     ; 200005             ; 200005:pw_warehouse_s                    ;                                 ;
+                     ; 200006             ; 200006:pw_warehouse_e                    ;                                 ;
+                     ; 200007             ; 200007:pw_warehouse_n                    ;                                 ;
+                     ; 200008             ; 200008:pw_warehouse_w                    ;                                 ;
+                     ; 200009             ; 200009:pw_warehouse_s                    ;                                 ;
+                     ; 200010             ; 200010:pw_warehouse_e                    ;                                 ;
+                     ; 200011             ; 200011:pw_warehouse_n                    ;                                 ;
+                     ; 200012             ; 200012:pw_warehouse_w                    ;                                 ;
+                     ; 200013             ; 200013:pw_warehouse_s                    ;                                 ;
+                     ; 200014             ; 200014:pw_warehouse_e                    ;                                 ;
+                     ; 200015             ; 200015:pw_warehouse_n                    ;                                 ;
+                     ; 200016             ; 200016:pw_warehouse_w                    ;                                 ;
+                     ; 200017             ; 200017:pw_warehouse_s                    ;                                 ;
+                     ; 200018             ; 200018:pw_warehouse_e                    ;                                 ;
+                     ; 200019             ; 200019:pw_warehouse_n                    ;                                 ;
+                     ; 200020             ; 200020:pw_warehouse_w                    ;                                 ;
+                     ; 200021             ; 200021:pw_warehouse_s                    ;                                 ;
+                     ; 200022             ; 200022:pw_warehouse_e                    ;                                 ;
+                     ; 200023             ; 200023:pw_warehouse_n                    ;                                 ;
+                     ; 200024             ; 200024:pw_warehouse_w                    ;                                 ;
+                     ; 200025             ; 200025:pw_warehouse_s                    ;                                 ;
+                     ; 200026             ; 200026:pw_warehouse_e                    ;                                 ;
+                     ; 200027             ; 200027:pw_warehouse_n                    ;                                 ;
+                     ; 200028             ; 200028:pw_warehouse_w                    ;                                 ;
+                     ; 200029             ; 200029:pw_warehouse_s                    ;                                 ;
+                     ; 200030             ; 200030:pw_warehouse_e                    ;                                 ;
+                     ; 200031             ; 200031:pw_warehouse_n                    ;                                 ;
+                     ; 200032             ; 200032:pw_warehouse_w                    ;                                 ;
+                     ; 200033             ; 200033:pw_warehouse_s                    ;                                 ;
+                     ; 200034             ; 200034:pw_warehouse_e                    ;                                 ;
+                     ; 200035             ; 200035:pw_warehouse_n                    ;                                 ;
+                     ; 200036             ; 200036:pw_warehouse_w                    ;                                 ;
+                     ; 200037             ; 200037:pw_warehouse_s                    ;                                 ;
+                     ; 200038             ; 200038:pw_warehouse_e                    ;                                 ;
+                     ; 200039             ; 200039:pw_warehouse_n                    ;                                 ;
+                     ; 200040             ; 200040:pw_warehouse_w                    ;                                 ;

@@ -1,0 +1,42 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Category Classifications into PTronics Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog = ptronicsProductCatalog
+$productCatalogName = PTronics Product Catalog
+$catalogVersion = catalogversion(catalog(id[default = $productCatalog]), version[default = 'Staged'])[unique = true, default = $productCatalog:Staged]
+$classCatalogVersion = catalogversion(catalog(id[default = 'PTronicsClassification']), version[default = '1.0'])[unique = true, default = 'PTronicsClassification:1.0']
+$classSystemVersion = systemVersion(catalog(id[default = 'PTronicsClassification']), version[default = '1.0'])[unique = true]
+$class = classificationClass(ClassificationClass.code, $classCatalogVersion)[unique = true]
+$supercategories = source(code, $classCatalogVersion)[unique = true]
+$categories = target(code, $catalogVersion)[unique = true]
+$attribute = classificationAttribute(code, $classSystemVersion)[unique = true]
+$unit = unit(code, $classSystemVersion)
+
+# Insert Classifications
+INSERT_UPDATE ClassificationClass; $classCatalogVersion; code[unique = true]; allowedPrincipals(uid)[default = 'customergroup']
+                                 ;                     ; energyManagement   ;
+                                 ;                     ; cableAssortment    ;
+                                 ;                     ; softwareManagement ;
+
+# Insert Classification Attributes
+INSERT_UPDATE ClassificationAttribute; $classSystemVersion; code[unique = true]
+                                     ;                    ; inputPower
+                                     ;                    ; cableType
+                                     ;                    ; os
+
+# Links ClassificationClasses to Categories
+INSERT_UPDATE CategoryCategoryRelation; $categories ; $supercategories
+                                      ; charger     ; energyManagement
+                                      ; accessories ; cableAssortment
+                                      ; laptop      ; softwareManagement
+                                      ; desktop     ; softwareManagement
+
+INSERT_UPDATE ClassAttributeAssignment; $class             ; $attribute ; position; $unit; attributeType(code[default = string]); multiValued[default = false]; range[default = false]; localized[default = true]
+                                      ; energyManagement   ; inputPower ; 1       ; 44   ;                                      ;                             ;                       ;
+                                      ; cableAssortment    ; cableType  ; 1       ; 300  ;                                      ;                             ;                       ;
+                                      ; softwareManagement ; os         ; 1       ; 300  ;                                      ;                             ;                       ;
+
+ 
